@@ -34,16 +34,14 @@ inline pros::ADIDigitalOut endgame(10, 'E');
 
 
 // Sensors ###
-// Tracking Wheel
+// Rotation Sensor
 inline pros::Rotation SlEncode(14);
 inline pros::Rotation SsEncode(15);
+
+inline pros::Rotation cataPos(16);
 
 // Inertial Sensor
 inline pros::Imu imu1(7);
 inline pros::Imu imu2(8);
 inline double imu1Multi = 1;
 inline double imu2Multi = 1;
-
-// Lim Switch
-inline int cataLimTop = (ADI_DIGITAL_IN, ('F', 10));
-inline int cataLimBot = (ADI_DIGITAL_IN, ('G', 10));
