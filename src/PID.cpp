@@ -25,7 +25,7 @@ int turnPrevError = 0;
 int turnDerivative;
 int turnTotalError = 0;
 
-int drivePID(){
+void drivePID(){
     while (enableDrivePID){
 
         // Get position of a motor on each side
@@ -71,7 +71,7 @@ int drivePID(){
 
         prevError = error;
         turnPrevError = turnError;
-        pros::delay(20);
+        pros::delay(10);
     }
-    return 1;
+
 }
