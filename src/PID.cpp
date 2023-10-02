@@ -38,7 +38,7 @@ void drivePID(){
         // Average of two sides
         int averagePosition = (leftMotorPosition + rightMotorPosition) / 2;
 
-        // Potential (P) for error
+        // Proportional (P) for error
         error = averagePosition - desiredValue;
 
         // Derivative (D) for speed
@@ -52,7 +52,7 @@ void drivePID(){
         // Difference of two sides
         int turnDifference = leftMotorPosition - rightMotorPosition;
 
-        // Potential (P)
+        // Proportional (P)
         turnError = averagePosition - desiredValue;
 
         // Derivative (D)
@@ -71,7 +71,7 @@ void drivePID(){
 
         prevError = error;
         turnPrevError = turnError;
-        pros::delay(10);
+        pros::delay(20);
     }
 
 }
