@@ -1,30 +1,30 @@
 #include "globals.hpp"
 
-void moveL(int velocity) {
+inline void moveL(int velocity) {
 	LF.move_velocity(velocity);
 	LB.move_velocity(velocity);
 	LM.move_velocity(velocity);
 }
 
-void moveR(int velocity) {
+inline void moveR(int velocity) {
 	RF.move_velocity(velocity);
 	RB.move_velocity(velocity);
 	RM.move_velocity(velocity);
 }
 
-void movePL(int power) {
+inline void movePL(int power) {
 	LF.move(power);
 	LB.move(power);
 	LM.move(power);
 }
 
-void movePR(int power) {
+inline void movePR(int power) {
 	RF.move(power);
 	RB.move(power);
 	RM.move(power);
 }
 
-void HardBreak() {
+inline void HardBreak() {
 	moveL(0);
 	moveR(0);
 	LF.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -41,7 +41,7 @@ void HardBreak() {
 	RB.tare_position();
 }
 
-void driveTare () {
+inline void driveTare () {
 	LB.tare_position();
 	LM.tare_position();
 	LF.tare_position();
