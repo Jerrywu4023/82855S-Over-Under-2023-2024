@@ -1,6 +1,6 @@
 #include "globals.hpp"
 
-inline void moveL(int velocity) {
+/*inline void moveL(int velocity) {
 	LF.move_velocity(velocity);
 	LB.move_velocity(velocity);
 	LM.move_velocity(velocity);
@@ -48,4 +48,4 @@ inline void driveTare () {
 	RM.tare_position();
 	RB.tare_position();
 	RF.tare_position();
-}
+}*/
