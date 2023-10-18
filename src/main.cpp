@@ -18,7 +18,7 @@ void opcontrol() {
 	int drivePower;
 	int turnPower;
 
-	bool cataState = 2; // cata states: 0 = up, 1 = down, 2 = auto disabled
+	int cataState = 2; // cata states: 0 = up, 1 = down, 2 = auto disabled
 	bool cataButton;
 	bool cataDisable = false;
 	bool prevDisable = false;
