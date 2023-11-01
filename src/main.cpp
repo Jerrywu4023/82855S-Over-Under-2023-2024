@@ -5,9 +5,9 @@ void initialize() {
 	pros::lcd::initialize();
 	
 	// reset pneumatics
-	intakeA.set_value(false);
-	intakeB.set_value(false);
+	intakeA.set_value(true);
 	endgame.set_value(false);
+	wallL.set_value(false);
 
 	// calibrate imu
 	imu1.reset();
@@ -21,7 +21,7 @@ void initialize() {
 	SsEncode.reset();
 	cataPos.reset();
 
-	pros::delay(3000);
+	pros::delay(2000);
 }
 
 void disabled() {}

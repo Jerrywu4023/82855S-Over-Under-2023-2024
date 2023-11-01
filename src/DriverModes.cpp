@@ -22,6 +22,9 @@ inline bool wallButton;
 inline bool endgameButton;
 inline bool endgameButton2;
 
+inline bool intakeExtend;
+inline bool prevExtend = false;
+inline bool intakePistState = false;
 
 /**
  * @brief Driver mode
@@ -100,7 +103,7 @@ inline void overUnder() {
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeReverse = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    intakeExtend = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
@@ -109,8 +112,8 @@ inline void overUnder() {
     endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive - move drive motors
-    moveL(drivePower * 2 - turnPower);
-    moveR(drivePower * 2 + turnPower);
+    moveL((drivePower - turnPower) * 4);
+    moveR((drivePower + turnPower) * 4);
 
     /* Intake Cata system ###
     if toggleState == 0, stop cata
@@ -159,8 +162,17 @@ inline void overUnder() {
     */
 
     // update state
-    if (cataToggle && !prevCataToggle) {
-        matchloadCataState = !matchloadCataState;
-    }
+    if (cataToggle && !prevCataToggle) matchloadCataState = !matchloadCataState;
+
     prevCataToggle = cataToggle;
+
+    /*
+    Intake extend ###
+    button press to change intake extension state
+    */
+    intakeA.set_value(intakePistState);
+
+    if (intakeExtend && !prevExtend) intakePistState = !intakePistState;
+
+    prevExtend = intakeExtend;
 }
