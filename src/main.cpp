@@ -3,6 +3,25 @@
 
 void initialize() {
 	pros::lcd::initialize();
+	
+	// reset pneumatics
+	intakeA.set_value(false);
+	intakeB.set_value(false);
+	endgame.set_value(false);
+
+	// calibrate imu
+	imu1.reset();
+	imu2.reset();
+
+	// reset drive
+	driveTare();
+
+	// reset rot sensor
+	SlEncode.reset();
+	SsEncode.reset();
+	cataPos.reset();
+
+	pros::delay(3000);
 }
 
 void disabled() {}

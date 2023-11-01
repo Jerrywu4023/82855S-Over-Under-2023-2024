@@ -8,7 +8,10 @@ inline int turnPower;
 inline int driverCataState = 2; // states: 0 = up, 1 = down, 2 = auto disabled
 inline bool matchloadCataState = false; // states: false = off, true = on
 inline bool cataButton;
-inline bool prevCataButton = false;
+inline bool cataToggle;
+inline bool prevCataToggle = false;
+inline bool autoLower = false;
+inline bool cataReset;
 
 inline bool cataDisable = false;
 inline bool prevDisable = false;
@@ -86,7 +89,8 @@ inline void basicDriver() {
 
 /**
  * @brief over under match load styled
- * Toggle active cata
+ * Toggle + hold active cata
+ * Auto lower cata when button pressed
  */
 inline void overUnder() {
     // Get controller
@@ -98,7 +102,8 @@ inline void overUnder() {
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
     intakeReverse = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    cataDisable = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
+    cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
     endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
@@ -108,14 +113,16 @@ inline void overUnder() {
     moveR(drivePower * 2 + turnPower);
 
     /* Intake Cata system ###
-    if state == 0, stop cata
-    if state == 1, run cata
+    if toggleState == 0, stop cata
+    if toggleState == 1, run cata
 
     if intake button, reverse cata
-    if intake reverse, run cata
+    if intake reverse, run cata 
+
+    if holding cata button, run cata
     */
 
-    if (matchloadCataState || intakeReverse) {
+    if (matchloadCataState || intakeReverse || cataButton) {
         cataL.move(127);
         cataR.move(127);
     } else if (intakeButton) {
@@ -126,6 +133,24 @@ inline void overUnder() {
         cataR.move(0);
     }
 
+    /* Auto lower cata ###
+    Automatically lowers cata when desired
+
+    if auto lower == true, override previous control and lower cata
+    if false, dont
+
+    auto lower set to true when button pressed
+    auto lower set to false when position reached
+    */ 
+    if (autoLower) {
+        cataL.move(127);
+        cataR.move(127);
+    }
+
+    if (cataReset) autoLower = true; // set auto to true
+
+    if (cataPos.get_position() > 85) autoLower = false; // set auto to false
+
 
     /* Cata state control ###
     Cata state switches the instant button pressed
@@ -134,7 +159,8 @@ inline void overUnder() {
     */
 
     // update state
-    if (cataButton && !prevCataButton) {
+    if (cataToggle && !prevCataToggle) {
         matchloadCataState = !matchloadCataState;
     }
+    prevCataToggle = cataToggle;
 }
