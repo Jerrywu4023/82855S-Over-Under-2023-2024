@@ -5,9 +5,9 @@ void initialize() {
 	pros::lcd::initialize();
 	
 	// reset pneumatics
-	intakeA.set_value(true);
+	intakeA.set_value(false);
 	endgame.set_value(false);
-	wallL.set_value(false);
+	wallL.set_value(true);
 
 	// calibrate imu
 	imu1.reset();

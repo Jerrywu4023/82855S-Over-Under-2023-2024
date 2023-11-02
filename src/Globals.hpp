@@ -6,7 +6,7 @@ inline pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 // Motors ###
 // Drive
-inline pros::Motor LF(1, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor LF(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor LM(19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor LB(10, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 

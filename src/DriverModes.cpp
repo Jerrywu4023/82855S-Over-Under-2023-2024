@@ -112,8 +112,8 @@ inline void overUnder() {
     endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive - move drive motors
-    moveL((drivePower - turnPower) * 4);
-    moveR((drivePower + turnPower) * 4);
+    moveL((drivePower * 4) - (turnPower * 3));
+    moveR((drivePower * 4) + (turnPower * 3));
 
     /* Intake Cata system ###
     if toggleState == 0, stop cata
@@ -152,7 +152,7 @@ inline void overUnder() {
 
     if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() > 85) autoLower = false; // set auto to false
+    if (cataPos.get_position() < 1000) autoLower = false; // set auto to false, 1000 = disabled
 
 
     /* Cata state control ###
