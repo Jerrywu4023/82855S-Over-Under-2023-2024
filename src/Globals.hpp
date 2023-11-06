@@ -42,5 +42,3 @@ inline pros::Rotation cataPos(16);
 // Inertial Sensor
 inline pros::Imu imu1(7);
 inline pros::Imu imu2(8);
-inline double imu1Multi = 1;
-inline double imu2Multi = 1;

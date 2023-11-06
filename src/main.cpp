@@ -43,6 +43,6 @@ void opcontrol() {
 		else basicDriver();
 
 		// Delay cotrol loop to not over work the brain
-		pros::delay(20);
+		pros::delay(10);
 	}
 }
