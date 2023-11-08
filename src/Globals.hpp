@@ -22,25 +22,25 @@ inline pros::Motor cataR(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCO
 
 // Pneumatics ###
 // Intake
-inline pros::ADIDigitalOut intakeA('D');
+inline pros::ADIDigitalOut intakeA('F');
 
 // WALL
-inline pros::ADIDigitalOut wallL(10, 'C');
-inline pros::ADIDigitalOut wallR(10, 'A');
+inline pros::ADIDigitalOut wallL('D');
+inline pros::ADIDigitalOut wallR('E');
 
 // Endgame
-inline pros::ADIDigitalOut endgame(10, 'E');
+inline pros::ADIDigitalOut endgame('C');
 
 
 // Sensors ###
 // Rotation Sensor
-inline pros::Rotation SlEncode(14);
+inline pros::Rotation SlEncode(8);
 inline pros::Rotation SsEncode(15);
 
-inline pros::Rotation cataPos(16);
+inline pros::Rotation cataPos(7);
 
 // Inertial Sensor
-inline pros::Imu imu1(7);
-inline pros::Imu imu2(8);
+inline pros::Imu imu1(16);
+inline pros::Imu imu2(2);
 inline double imu1Multi = 1;
 inline double imu2Multi = 1;
