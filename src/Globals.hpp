@@ -14,6 +14,8 @@ inline pros::Motor RF(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER
 inline pros::Motor RM(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor RB(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 
+inline pros::Motor driveMotors[] = {LF, LM, LB, RF, RM, RB};
+
 
 // Cata - Intake
 inline pros::Motor cataL(17, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);

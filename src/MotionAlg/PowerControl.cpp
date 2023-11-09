@@ -4,6 +4,7 @@
 // Function switches
 inline bool auton = true;
 inline bool moveTurn = true; // move robot on true, turn robot on false
+inline bool disableOdomControl = false;
 
 // Desired values
 inline double desX;
