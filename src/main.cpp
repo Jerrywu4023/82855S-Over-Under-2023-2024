@@ -35,6 +35,9 @@ void opcontrol() {
 	// Variables
 	int driveMode = 0;
 
+	
+	pros::Task Odom(odometry);
+
 	// Control Loop
 	while (driveMode != -1) {
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) driveMode = 0;

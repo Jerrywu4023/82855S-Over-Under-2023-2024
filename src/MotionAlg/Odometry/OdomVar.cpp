@@ -1,3 +1,5 @@
+#include "main.h"
+
 // Variables ##############################
 inline double pi = 3.14159265359;
 
@@ -5,7 +7,7 @@ inline double pi = 3.14159265359;
 inline bool enableOdom = true;
 
 // tracking wheel dist to center
-inline double Sl = 6;
+inline double Sl = 5.75;
 inline double Ss = 0;
 
 // tracking wheel diameters (inches)
@@ -13,8 +15,8 @@ inline double wheelL = 3.25;
 inline double wheelS = 2.75;
 
 // encoder values (centi degrees)
-inline int totalL = 0;
-inline int totalS = 0;
+inline double totalL = 0;
+inline double totalS = 0;
 
 // actual total distance (inches)
 inline double currL = 0;
@@ -27,10 +29,6 @@ inline double prevS = 0;
 // tracking dist change (inches)
 inline double deltL = 0;
 inline double deltS = 0;
-
-// imu multipliers
-inline double imu1Multi = 1;
-inline double imu2Multi = 1;
 
 // imu values
 inline double imuRot1;
@@ -59,3 +57,16 @@ inline double offRadius; // magnitude of offset vector
 inline double globalX = 0; // x coord
 inline double globalY = 0; // y coord
 inline double heading; // robot heading in degrees (0 - 359)
+
+// Sensors
+// Rotation Sensor
+inline pros::Rotation SlEncode(8);
+inline pros::Rotation SsEncode(15);
+
+// Inertial Sensor
+inline pros::Imu imu1(16);
+inline pros::Imu imu2(2);
+
+// imu multipliers
+inline double imu1Multi = 1.0042;
+inline double imu2Multi = 1.0115;

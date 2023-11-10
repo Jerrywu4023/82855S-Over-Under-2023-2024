@@ -15,16 +15,16 @@
  * Change in angle is counterclockwise positive
  */
 
-inline void odometry (pros::Imu imu1, pros::Imu imu2, pros::Rotation Slencode, pros::Rotation Ssencode) {    
+inline void odometry () {    
     // constant loop to update odom values
     while (enableOdom) {
         // Get encoder values
-        totalL = Slencode.get_position();
-        totalS = Ssencode.get_position();
+        totalL = SlEncode.get_position();
+        totalS = 0; //SsEncode.get_position();
 
         // Convert encoder values to distance traveled
-        currL = totalL * (pi / 18000) * (wheelL) * (2 / 3);
-        currS = totalS * (pi / 18000) * (wheelS) * (2 / 3);
+        currL = totalL * (pi / 18000) * (wheelL) * (2.0 / 3.0);
+        currS = totalS * (pi / 18000) * (wheelS) * (2.0 / 3.0);
 
         // Get the change in tracking wheel distance
         deltL = currL - prevL;
@@ -71,8 +71,8 @@ inline void odometry (pros::Imu imu1, pros::Imu imu2, pros::Rotation Slencode, p
 
         // Convert heading to the range [0, 360)
         while (heading > 360) {
-				heading -= 360;
-			}
+			heading -= 360;
+		}
         while (heading < 0) {
             heading += 360;
         }

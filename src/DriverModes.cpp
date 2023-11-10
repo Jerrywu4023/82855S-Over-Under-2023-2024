@@ -125,7 +125,7 @@ inline void overUnder() {
     if holding cata button, run cata
     */
 
-    if (matchloadCataState || intakeReverse || cataButton) {
+    if (matchloadCataState || intakeReverse || cataButton || autoLower) {
         cataL.move(127);
         cataR.move(127);
     } else if (intakeButton) {
@@ -139,20 +139,14 @@ inline void overUnder() {
     /* Auto lower cata ###
     Automatically lowers cata when desired
 
-    if auto lower == true, override previous control and lower cata
-    if false, dont
+    if auto lower == true, lower cata
 
     auto lower set to true when button pressed
     auto lower set to false when position reached
     */ 
-    if (autoLower) {
-        cataL.move(127);
-        cataR.move(127);
-    }
-
     if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 1000) autoLower = false; // set auto to false, 1000 = disabled
+    if (cataPos.get_position() < 27000) autoLower = false; // set auto to false, 100000 = disabled
 
 
     /* Cata state control ###

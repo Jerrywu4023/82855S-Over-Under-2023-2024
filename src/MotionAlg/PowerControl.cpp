@@ -16,8 +16,8 @@ inline double desDrive;
 inline double desTurn;
 
 // Coordinate movement variables
-double Xdiff, Ydiff;
-double distance, angle;
+inline double Xdiff, Ydiff;
+inline double distance, angle;
 
 
 /**

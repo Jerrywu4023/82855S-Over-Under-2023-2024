@@ -35,12 +35,4 @@ inline pros::ADIDigitalOut endgame('C');
 
 
 // Sensors ###
-// Rotation Sensor
-inline pros::Rotation SlEncode(8);
-inline pros::Rotation SsEncode(15);
-
 inline pros::Rotation cataPos(7);
-
-// Inertial Sensor
-inline pros::Imu imu1(16);
-inline pros::Imu imu2(2);
