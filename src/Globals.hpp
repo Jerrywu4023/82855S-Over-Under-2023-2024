@@ -27,8 +27,8 @@ inline pros::Motor cataR(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCO
 inline pros::ADIDigitalOut intakeA('F');
 
 // WALL
-inline pros::ADIDigitalOut wallL('D');
-inline pros::ADIDigitalOut wallR('E');
+inline pros::ADIDigitalOut wingL('D');
+inline pros::ADIDigitalOut wingR('E');
 
 // Endgame
 inline pros::ADIDigitalOut endgame('C');

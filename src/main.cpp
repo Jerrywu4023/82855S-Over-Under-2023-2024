@@ -8,7 +8,8 @@ void initialize() {
 	// reset pneumatics
 	intakeA.set_value(false);
 	endgame.set_value(false);
-	wallL.set_value(true);
+	wingL.set_value(wingLState);
+	wingR.set_value(wingRState);
 
 	// calibrate imu
 	imu1.reset();
