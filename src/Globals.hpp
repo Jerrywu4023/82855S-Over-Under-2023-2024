@@ -14,6 +14,8 @@ inline pros::Motor RF(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER
 inline pros::Motor RM(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 inline pros::Motor RB(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 
+inline pros::Motor driveMotors[] = {LF, LM, LB, RF, RM, RB};
+
 
 // Cata - Intake
 inline pros::Motor cataL(17, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
@@ -25,22 +27,12 @@ inline pros::Motor cataR(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCO
 inline pros::ADIDigitalOut intakeA('F');
 
 // WALL
-inline pros::ADIDigitalOut wallL('D');
-inline pros::ADIDigitalOut wallR('E');
+inline pros::ADIDigitalOut wingL('D');
+inline pros::ADIDigitalOut wingR('E');
 
 // Endgame
 inline pros::ADIDigitalOut endgame('C');
 
 
 // Sensors ###
-// Rotation Sensor
-inline pros::Rotation SlEncode(8);
-inline pros::Rotation SsEncode(15);
-
 inline pros::Rotation cataPos(7);
-
-// Inertial Sensor
-inline pros::Imu imu1(16);
-inline pros::Imu imu2(2);
-inline double imu1Multi = 1;
-inline double imu2Multi = 1;

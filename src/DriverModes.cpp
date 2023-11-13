@@ -26,6 +26,10 @@ inline bool intakeExtend;
 inline bool prevExtend = false;
 inline bool intakePistState = false;
 
+inline bool wingOn, wingLOn, wingROn, wingOff;
+inline int wingLState = 0;
+inline int wingRState = 0;
+
 /**
  * @brief Driver mode
  * press active catapult
@@ -42,8 +46,13 @@ inline void basicDriver() {
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     cataDisable = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
 
-    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
     endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+
+    wingOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    wingOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     // Drive - move drive motors
     moveL(drivePower * 2 - turnPower);
@@ -87,6 +96,29 @@ inline void basicDriver() {
         if (cataPos.get_position() > 85) driverCataState = 1;
         if (cataPos.get_position() < 10) driverCataState = 0;
     }
+
+    /*
+    Wings ###
+    0 = off, 1 = on
+
+    BUTTON    LEFT      RIGHT
+    wingOn    1         1
+    wingLOn   1         no change
+    wingROn   no change 1
+    wingOff   0         0
+    */
+    
+    // left wing
+    if (wingOn || wingLOn) wingLState = 1;
+    if (wingOff) wingLState = 0;
+
+    // right wing
+    if (wingOn || wingROn) wingRState = 1;
+    if (wingOff) wingRState = 0;
+
+    // set wing state
+    wingL.set_value(wingLState);
+    wingR.set_value(wingRState);
 }
 
 
@@ -106,10 +138,15 @@ inline void overUnder() {
     intakeExtend = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
-    cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 
-    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
     endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+
+    wingOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
+    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    wingOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     // Drive - move drive motors
     moveL((drivePower * 4) - (turnPower * 3));
@@ -125,7 +162,7 @@ inline void overUnder() {
     if holding cata button, run cata
     */
 
-    if (matchloadCataState || intakeReverse || cataButton) {
+    if (matchloadCataState || intakeReverse || cataButton || autoLower) {
         cataL.move(127);
         cataR.move(127);
     } else if (intakeButton) {
@@ -139,20 +176,14 @@ inline void overUnder() {
     /* Auto lower cata ###
     Automatically lowers cata when desired
 
-    if auto lower == true, override previous control and lower cata
-    if false, dont
+    if auto lower == true, lower cata
 
     auto lower set to true when button pressed
     auto lower set to false when position reached
     */ 
-    if (autoLower) {
-        cataL.move(127);
-        cataR.move(127);
-    }
-
     if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 1000) autoLower = false; // set auto to false, 1000 = disabled
+    if (cataPos.get_position() < 27000) autoLower = false; // set auto to false, 100000 = disabled
 
 
     /* Cata state control ###
@@ -175,4 +206,27 @@ inline void overUnder() {
     if (intakeExtend && !prevExtend) intakePistState = !intakePistState;
 
     prevExtend = intakeExtend;
+
+    /*
+    Wings ###
+    0 = off, 1 = on
+
+    BUTTON    LEFT      RIGHT
+    wingOn    1         1
+    wingLOn   1         no change
+    wingROn   no change 1
+    wingOff   0         0
+    */
+    
+    // left wing
+    if (wingOn || wingLOn) wingLState = 1;
+    if (wingOff) wingLState = 0;
+
+    // right wing
+    if (wingOn || wingROn) wingRState = 1;
+    if (wingOff) wingRState = 0;
+
+    // set wing state
+    wingL.set_value(wingLState);
+    wingR.set_value(wingRState);
 }

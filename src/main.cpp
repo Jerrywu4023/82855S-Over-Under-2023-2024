@@ -1,4 +1,5 @@
 #include "DriverModes.cpp"
+#include "MotionAlg\PowerOutput.cpp"
 #include "pros/misc.h"
 
 void initialize() {
@@ -7,7 +8,8 @@ void initialize() {
 	// reset pneumatics
 	intakeA.set_value(false);
 	endgame.set_value(false);
-	wallL.set_value(true);
+	wingL.set_value(wingLState);
+	wingR.set_value(wingRState);
 
 	// calibrate imu
 	imu1.reset();
@@ -34,6 +36,9 @@ void opcontrol() {
 	// Variables
 	int driveMode = 0;
 
+	
+	pros::Task Odom(odometry);
+
 	// Control Loop
 	while (driveMode != -1) {
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) driveMode = 0;
@@ -43,6 +48,6 @@ void opcontrol() {
 		else basicDriver();
 
 		// Delay cotrol loop to not over work the brain
-		pros::delay(20);
+		pros::delay(10);
 	}
 }
