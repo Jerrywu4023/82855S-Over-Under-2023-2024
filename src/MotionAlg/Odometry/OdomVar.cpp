@@ -61,11 +61,11 @@ inline double heading; // robot heading in degrees (0 - 359)
 // Sensors
 // Rotation Sensor
 inline pros::Rotation SlEncode(8);
-inline pros::Rotation SsEncode(15);
+inline pros::Rotation SsEncode(6);
 
 // Inertial Sensor
 inline pros::Imu imu1(16);
-inline pros::Imu imu2(2);
+inline pros::Imu imu2(5);
 
 // imu multipliers
 inline double imu1Multi = 1.0042;

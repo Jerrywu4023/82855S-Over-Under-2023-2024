@@ -1,5 +1,4 @@
-#include "DriverModes.cpp"
-#include "MotionAlg\PowerOutput.cpp"
+#include "Autons.cpp"
 #include "pros/misc.h"
 
 void initialize() {
