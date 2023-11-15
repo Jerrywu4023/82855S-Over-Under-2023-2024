@@ -20,7 +20,7 @@ inline void odometry () {
     while (enableOdom) {
         // Get encoder values
         totalL = SlEncode.get_position();
-        totalS = 0; //SsEncode.get_position();
+        totalS = SsEncode.get_position();
 
         // Convert encoder values to distance traveled
         currL = totalL * (pi / 18000) * (wheelL) * (2.0 / 3.0);
