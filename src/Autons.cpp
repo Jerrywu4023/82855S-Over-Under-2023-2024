@@ -119,9 +119,9 @@ inline void closeSide () {
     desX = -30;
     desY = 10;
     pros::delay(1000);
-}
+} 
 
-inline void soloAwp () {
+/* inline void soloAwp () {
     // push alliance triball into alliance goal
     desX = 20;
     desY = 30;
@@ -190,6 +190,7 @@ inline void soloAwp () {
     desY = 10;
     pros::delay(1000);
 }
+*/
 
 inline void skills () {
     // move to matchlaod
