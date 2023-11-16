@@ -60,7 +60,7 @@ inline double heading; // robot heading in degrees (0 - 359)
 
 // Sensors
 // Rotation Sensor
-inline pros::Rotation SlEncode(8);
+inline pros::Rotation SlEncode(8, true);
 inline pros::Rotation SsEncode(6);
 
 // Inertial Sensor

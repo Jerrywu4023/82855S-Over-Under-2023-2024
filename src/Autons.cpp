@@ -1,4 +1,4 @@
-#include "MotionAlg/PowerOutput.cpp"
+#include "MotionAlg\PowerOutput.cpp"
 #include "DriverModes.cpp"
 
 inline void farSide () {

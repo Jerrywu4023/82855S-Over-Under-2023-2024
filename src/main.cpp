@@ -18,8 +18,8 @@ void initialize() {
 	driveTare();
 
 	// reset rot sensor
-	SlEncode.reset();
-	SsEncode.reset();
+	SlEncode.reset_position();
+	SsEncode.reset_position();
 	cataPos.reset();
 
 	pros::delay(2000);

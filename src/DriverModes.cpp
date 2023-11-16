@@ -149,8 +149,8 @@ inline void overUnder() {
     wingOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
 
     // Drive - move drive motors
-    moveL((drivePower * 4) - (turnPower * 3));
-    moveR((drivePower * 4) + (turnPower * 3));
+    movePL(drivePower - turnPower);
+    movePR(drivePower + turnPower);
 
     /* Intake Cata system ###
     if toggleState == 0, stop cata

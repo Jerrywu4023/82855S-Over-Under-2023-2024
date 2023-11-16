@@ -23,8 +23,8 @@ inline void odometry () {
         totalS = SsEncode.get_position();
 
         // Convert encoder values to distance traveled
-        currL = totalL * (pi / 18000) * (wheelL) * (2.0 / 3.0);
-        currS = totalS * (pi / 18000) * (wheelS) * (2.0 / 3.0);
+        currL = totalL * (pi / 36000) * (wheelL) * (2.0 / 3.0);
+        currS = totalS * (pi / 36000) * (wheelS);
 
         // Get the change in tracking wheel distance
         deltL = currL - prevL;
