@@ -80,7 +80,6 @@ inline void odometry () {
         // Print values
         pros::lcd::print(0, "currL: %f", currL);
         pros::lcd::print(1, "currS: %f", currS);
-        pros::lcd::print(2, "imu1: %f imu2: %f", imuRot1, imuRot2);
         pros::lcd::print(3, "X: %f", globalX);
         pros::lcd::print(4, "Y: %f", globalY);
         pros::lcd::print(5, "Heading: %f", heading);

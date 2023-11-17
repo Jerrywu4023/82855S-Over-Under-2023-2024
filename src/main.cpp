@@ -37,14 +37,16 @@ void opcontrol() {
 
 	
 	pros::Task Odom(odometry);
+	pros::Task move(coordMove);
+	pros::Task turning(turn);
+	pros::Task out(PowerOutput);
+	pros::delay(10);
+	farSide();
 
 	// Control Loop
 	while (driveMode != -1) {
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) driveMode = 0;
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) driveMode = 1;
 
-		if (driveMode == 0) overUnder();
-		else basicDriver();
+		overUnder();
 
 		// Delay cotrol loop to not over work the brain
 		pros::delay(10);

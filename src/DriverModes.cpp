@@ -1,4 +1,4 @@
-#include "PID.cpp"
+#include "PowerOutput.cpp"
 #include "pros/misc.h"
 
 // Variables
@@ -135,18 +135,13 @@ inline void overUnder() {
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeExtend = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    intakeExtend = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
     cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 
-    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
-    endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-    wingOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
-    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
-    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-    wingOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
     // Drive - move drive motors
     movePL(drivePower - turnPower);
@@ -227,6 +222,6 @@ inline void overUnder() {
     if (wingOff) wingRState = 0;
 
     // set wing state
-    wingL.set_value(wingLState);
-    wingR.set_value(wingRState);
+    wingL.set_value(wingLOn);
+    wingR.set_value(wingROn);
 }

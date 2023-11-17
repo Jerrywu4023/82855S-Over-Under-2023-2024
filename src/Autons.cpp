@@ -1,30 +1,41 @@
-#include "MotionAlg\PowerOutput.cpp"
 #include "DriverModes.cpp"
 
 inline void farSide () {
     // push alliance triball to opponent goal
-    desX = -20;
-    desY = 30;
-    pros::delay(2000);
+    desX = 22;
+    desY = -35;
+    pros::delay(1500);
 
     // drive back to match loader
-    desX = -10;
-    desY = 10;
-    pros::delay(1000);
+    turnMulti = 3;
+
+    desX = 7;
+    desY = -10;
+    pros::delay(1500);
+
+    // turn to match loader
+    moveTurn = false;
+
+    desOrientation = 330;
+    pros::delay(500);
 
     // open wall
     wingR.set_value(true);
 
     // push triball out matchloader
+    moveTurn = true;
+
     for (int i = 0; i < 5; i++) {
         desX -= 2;
-        desY -= 1;
+        desY += 2;
         pros::delay(200);
     }
 
+    pros::delay(500);
+
     wingR.set_value(false);
 
-    // turn to middle of opponent offense zone
+    /*// turn to middle of opponent offense zone
     moveTurn = false;
 
     desOrientation = 20;
@@ -74,7 +85,7 @@ inline void farSide () {
 
     desX += 10;
     desY = 10;
-    pros::delay(3000);
+    pros::delay(3000);*/
 }
 
 inline void closeSide () {
@@ -315,4 +326,10 @@ inline void skills () {
     desX = 90;
     desY = -90;
     pros::delay(1000);
+}
+
+inline void test() {
+    desX = 10;
+    desY = 20;
+    pros::delay(100000);
 }

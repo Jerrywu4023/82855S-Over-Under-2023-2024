@@ -19,6 +19,8 @@ inline double desTurn;
 inline double Xdiff, Ydiff;
 inline double distance, angle;
 
+inline double turnMulti = 7;
+
 
 /**
  * @brief coordMove function
@@ -32,7 +34,7 @@ inline void coordMove() {
 			Ydiff = desY - globalY; // distance needed to travel in y direction
 
             // get distance and angle
-			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 360 / wheelL; // distance from desired locaion
+			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 5; // distance from desired locaion
 			angle = atan2(Xdiff, Ydiff) * 180 / pi - heading; // get direction of deired location according to robot heading
 
             // keep angle within [-180, 180]
@@ -43,17 +45,17 @@ inline void coordMove() {
 
 			if (fabs(angle) < 90) { // drive fwd with angle
 				desDrive = distance;
-				desTurn = angle * 100;
+				desTurn = angle * turnMulti;
 			} 
             
             else if (angle < 0) { // left back corner
 				desDrive = -distance; // drive rev
-				desTurn = (angle + 180) * 100; // move in angle so back pointing to target
+				desTurn = (angle + 180) * turnMulti; // move in angle so back pointing to target
 			} 
-            
+
             else {
 				desDrive = -distance; // drive rev
-				desTurn = (angle - 180) * 100; // move in angle so back pointing to target
+				desTurn = (angle - 180) * turnMulti; // move in angle so back pointing to target
 			}
         }
 
@@ -75,22 +77,22 @@ inline void turn() {
             if (desOrientation < heading) { // Desired orientation is left of current heading in the 0 to 360 range
                 
                 if (heading - desOrientation < 180) { // Left turn closer, negative power
-                    desTurn = (desOrientation - heading) * 100;
+                    desTurn = (desOrientation - heading) * 2;
                 } 
                 
                 else { // Right turn closer, positive power by adding 360
-                    desTurn = (desOrientation + 360 - heading) * 100;
+                    desTurn = (desOrientation + 360 - heading) * 2;
                 }
             } 
             
             else { // Desired orientation is right of the current heading in the 0 to 360 range
                 
                 if (desOrientation - heading < 180) { // Right turn closer, positive power
-                    desTurn = (desOrientation - heading) * 100;
+                    desTurn = (desOrientation - heading) * 2;
                 } 
                 
                 else { // Left turn closer, negative power
-                    desTurn = (desOrientation - 360 - heading) * 100;
+                    desTurn = (desOrientation - 360 - heading) * 2;
                 }
             }
         }
