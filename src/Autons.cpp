@@ -230,95 +230,38 @@ inline void closeSide () {
     
 } 
 
-/* inline void soloAwp () {
-    // push alliance triball into alliance goal
-    desX = 20;
-    desY = 30;
-    pros::delay(2000);
-
-    // move back to starting zone
-    desX = -10; 
-    desY = 10;
-    pros::delay(1500);
-
-    moveTurn = false;
-    
-    desOrientation = 270;
-
-    // drive across field
-    moveTurn = true;
-
-    desX = -50;
-    desY = 5;
-    pros::delay(500);
-
-    for (int i = 0; i < 5; i++) {
-        desX -= 7;
-        desY += 1;
-        pros::delay(500);
-    }
-
-    // turn to get matchload
-    moveTurn = false;
-
-    desOrientation = 330;
-    pros::delay(300);
-
-    // grab matchload to other side of field
-    wingL.set_value(true);
-
-    desX = -50;
-    desY = 20;
-
-    pros::delay(500);
-
-    wingL.set_value(false);
-
-    desX = -90;
-    desY = 20;
-
-    pros::delay(1000);
-
-    desX = -80;
-    desY = 10;
-
-    for (int i = 0; i < 10; i++) {
-        desX += 7;
-        pros::delay(300);
-    }
-
-    // open intake and touch elevation pole
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
-    desX = -10;
-    desY = 5;
-    pros::delay(1000);
-
-    desX = -30;
-    desY = 10;
-    pros::delay(1000);
-}
-*/
+// ##############################################################################################
+// ##############################################################################################
 
 inline void skills () {
     // move to matchlaod
+    turnMulti = 3;
+
     intakeA.set_value(true);
 
-    desX = 5;
-    desY = 10;
+    desX = -10;
+    desY = 15;
+    pros::delay(500);
+
+    // turn to shoot
+    moveTurn = false;
+
+    desOrientation = 345;
+
     pros::delay(500);
 
     // matchload
     cataL.move(127);
     cataR.move(127);
 
-    pros::delay(40000);
+    pros::delay(50000);
+
+    cataL.move(0);
+    cataR.move(0);
 
     intakeA.set_value(false);
 
-    // move across field
-    moveTurn = false;
+    /*// move across field
 
     desOrientation = -300;
     pros::delay(500);
@@ -423,7 +366,7 @@ inline void skills () {
 
     desX = 90;
     desY = -90;
-    pros::delay(1000);
+    pros::delay(1000);*/
 }
 
 inline void test() {

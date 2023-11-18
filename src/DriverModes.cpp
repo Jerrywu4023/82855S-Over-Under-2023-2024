@@ -178,7 +178,7 @@ inline void overUnder() {
     */ 
     if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 28500) autoLower = false; // set auto to false, 100000 = disabled
+    if (cataPos.get_position() < 27000) autoLower = false; // set auto to false, 100000 = disabled
 
 
     /* Cata state control ###
