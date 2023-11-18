@@ -1,5 +1,6 @@
 #include "main.h"
 #include "pros/adi.hpp"
+#include "pros/distance.hpp"
 
 // Controller ###
 inline pros::Controller master(pros::E_CONTROLLER_MASTER);
@@ -36,3 +37,5 @@ inline pros::ADIDigitalOut endgame('C');
 
 // Sensors ###
 inline pros::Rotation cataPos(7);
+
+inline pros::Distance autonSelect(2);

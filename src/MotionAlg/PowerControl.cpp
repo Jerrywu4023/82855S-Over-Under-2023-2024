@@ -19,7 +19,7 @@ inline double desTurn;
 inline double Xdiff, Ydiff;
 inline double distance, angle;
 
-inline double turnMulti = 7;
+inline double turnMulti = 5;
 
 
 /**
@@ -34,7 +34,7 @@ inline void coordMove() {
 			Ydiff = desY - globalY; // distance needed to travel in y direction
 
             // get distance and angle
-			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 5; // distance from desired locaion
+			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 3; // distance from desired locaion
 			angle = atan2(Xdiff, Ydiff) * 180 / pi - heading; // get direction of deired location according to robot heading
 
             // keep angle within [-180, 180]

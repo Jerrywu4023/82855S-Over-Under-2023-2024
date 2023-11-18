@@ -22,26 +22,51 @@ void initialize() {
 	SsEncode.reset_position();
 	cataPos.reset();
 
-	pros::delay(2000);
+	pros::delay(1000);
+
+	// auton select
+
+	autonNum = autonSelect.get();
+
+	pros::lcd::print(0, "auton: %d", autonNum);
+
+	if (autonNum < 100) {
+		autonNum = 0;
+		pros::lcd::print(1, "close side");
+	}
+	else if (autonNum < 500) {
+		autonNum = 1;
+		pros::lcd::print(1, "far side");
+	}
+	else {
+		autonNum = 2;
+		pros::lcd::print(1, "skills");
+	}
+
+	pros::delay(3000);
+
 }
 
 void disabled() {}
 
 void competition_initialize() {}
 
-void autonomous() {}
-
-void opcontrol() {
-	// Variables
-	int driveMode = 0;
-
-	
+void autonomous() {
 	pros::Task Odom(odometry);
 	pros::Task move(coordMove);
 	pros::Task turning(turn);
 	pros::Task out(PowerOutput);
 	pros::delay(10);
-	farSide();
+
+	if (autonNum == 0) closeSide();
+	else if (autonNum == 1) farSide();
+	else if (autonNum == 2) skills();
+}
+
+void opcontrol() {
+	// Variables
+	int driveMode = 0;
+	auton = false;
 
 	// Control Loop
 	while (driveMode != -1) {

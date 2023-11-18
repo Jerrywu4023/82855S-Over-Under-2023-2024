@@ -1,17 +1,19 @@
 #include "DriverModes.cpp"
 
+inline int autonNum;
+
 inline void farSide () {
     // push alliance triball to opponent goal
     desX = 22;
     desY = -35;
-    pros::delay(1500);
+    pros::delay(1200);
 
     // drive back to match loader
     turnMulti = 3;
 
     desX = 7;
     desY = -10;
-    pros::delay(1500);
+    pros::delay(1200);
 
     // turn to match loader
     moveTurn = false;
@@ -31,11 +33,9 @@ inline void farSide () {
         pros::delay(200);
     }
 
-    pros::delay(500);
-
     wingR.set_value(false);
 
-    /*// turn to middle of opponent offense zone
+    // turn to middle of opponent offense zone
     moveTurn = false;
 
     desOrientation = 20;
@@ -44,15 +44,15 @@ inline void farSide () {
     // drive to middle of opponent offense zone
     moveTurn = true;
 
-    desX = 10;
-    desY = 40;
-    pros::delay(2000);
+    desX = -10;
+    desY = -53;
+    pros::delay(1500);
 
     // turn to pipe and open wall
     moveTurn = false;
 
-    desOrientation = 90;
-    pros::delay(1000);
+    desOrientation = 270;
+    pros::delay(800);
 
     wingR.set_value(true);
     wingL.set_value(true);
@@ -60,15 +60,15 @@ inline void farSide () {
     // push triballs over pipe
     moveTurn = true;
 
-    desX += 30;
-    pros::delay(1500);
+    desX -= 40;
+    pros::delay(1000);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
     // drive back
-    desX -= 10;
-    pros::delay(500);
+    desX += 30;
+    pros::delay(800);
 
     // open intake
     intakePistState = !intakePistState;
@@ -77,25 +77,36 @@ inline void farSide () {
     // turn to elevation pole
     moveTurn = false;
 
-    desOrientation = 180;
+    desOrientation = 0;
     pros::delay(800);
 
     // touch elevation pole
     moveTurn = true;
 
-    desX += 10;
-    desY = 10;
-    pros::delay(3000);*/
+    desX -= 20;
+    desY = -10;
+    pros::delay(2000);
+
+    // touch pole
+    moveTurn = false;
+
+    desOrientation = 300;
+    pros::delay(1000);
 }
 
+// ##############################################################################################
+// ##############################################################################################
+
 inline void closeSide () {
+    turnMulti = 3;
+
     globalX = 10;
-    globalY = 15;
 
     // turn to matchloader
     moveTurn = false;
 
     desOrientation = 30;
+    pros::delay(500);
 
     wingR.set_value(true);
 
@@ -103,33 +114,120 @@ inline void closeSide () {
     moveTurn = true;
 
     desX = 10;
-    desY = 30;
-    pros::delay(2000);
+
+    for (int i = 0; i < 3; i++) {
+        desX += 2;
+        desY += 4;
+        pros::delay(200);
+    }
+
+    desX = 25;
+    desY = 40;
+
+    pros::delay(500);
+
+    wingR.set_value(false);
+
+    pros::delay(1000);
 
     wingR.set_value(false);
 
     // move back to starting pos
     desX = 5;
-    desY = 10;
+    desY = -8;
     pros::delay(1000);
 
-    // turn to elevation
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    // turn to elevation and intake triball
     moveTurn = false;
 
     desOrientation = 270;
     pros::delay(800);
 
-    // touch elevation pole
+    cataL.move(-127);
+    cataR.move(-127);
+
+    moveTurn = true;
+
+    desX = -37;
+    desY = -8;
+    pros::delay(1800);
+
+    // move back to starting pos and curve to the side
+    cataL.move(-120);
+    cataR.move(-120);
+    
+    desX = 10;
+    desY = -8;
+
+    pros::delay(1500);
+
+    moveTurn = false;
+    
+    desOrientation = 330;
+    pros::delay(500);
+    
+    moveTurn = true;
+
+    turnMulti += 1;
+
+    // move to middle
+    desX = -35;
+    desY = 55;
+    pros::delay(1200);
+
+    // turn to goal
+    moveTurn = false;
+    
+    desOrientation = 90;
+    pros::delay(300);
+
+    // outtake triball
+    wingL.set_value(true);
+    wingR.set_value(true);
+
+    cataL.move(127);
+    cataR.move(127);
+    pros::delay(300);
+
+    // close intake and push triballs
+    cataL.move(0);
+    cataR.move(0);
+
     intakePistState = !intakePistState;
     intakeA.set_value(intakePistState);
 
-    desX = -10;
-    desY = 5;
-    pros::delay(2000);
+    moveTurn = true;
 
-    desX = -30;
-    desY = 10;
+    turnMulti -= 1;
+
+    desX = 15;
+    desY = 55;
+    pros::delay(1500);
+
+    // touch pole
+    desX = -28;
+    desY = 20;
     pros::delay(1000);
+
+    wingL.set_value(false);
+    wingR.set_value(false);
+
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    moveTurn = false;
+    
+    desOrientation = 220;
+    pros::delay(800);
+    
+    moveTurn = true;
+    desX -= 10;
+    desY -= 10;
+    pros::delay(1000);
+    
 } 
 
 /* inline void soloAwp () {
