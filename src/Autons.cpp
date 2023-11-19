@@ -5,14 +5,14 @@ inline int autonNum;
 inline void farSide () {
     // push alliance triball to opponent goal
     desX = 22;
-    desY = -35;
+    desY = -40;
     pros::delay(1200);
 
     // drive back to match loader
     turnMulti = 3;
 
-    desX = 7;
-    desY = -10;
+    desX = 10;
+    desY = -8;
     pros::delay(1200);
 
     // turn to match loader
@@ -28,8 +28,8 @@ inline void farSide () {
     moveTurn = true;
 
     for (int i = 0; i < 5; i++) {
-        desX -= 2;
-        desY += 2;
+        desX -= 3;
+        desY += 3;
         pros::delay(200);
     }
 
@@ -45,7 +45,7 @@ inline void farSide () {
     moveTurn = true;
 
     desX = -10;
-    desY = -53;
+    desY = -50;
     pros::delay(1500);
 
     // turn to pipe and open wall
@@ -83,7 +83,7 @@ inline void farSide () {
     // touch elevation pole
     moveTurn = true;
 
-    desX -= 20;
+    desX -= 25;
     desY = -10;
     pros::delay(2000);
 
