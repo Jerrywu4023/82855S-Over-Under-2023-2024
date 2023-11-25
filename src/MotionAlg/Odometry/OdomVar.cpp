@@ -67,6 +67,8 @@ inline pros::Rotation SsEncode(6);
 inline pros::Imu imu1(16);
 inline pros::Imu imu2(5);
 
-// imu multipliers
+// imu error compensations
 inline double imu1Multi = 1.0042;
 inline double imu2Multi = 1.0115;
+
+inline double imu1Increase = 0;

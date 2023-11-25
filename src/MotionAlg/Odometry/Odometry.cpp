@@ -35,7 +35,7 @@ inline void odometry () {
         prevS = currS;
 
         // Get absoulte orientation
-        imuRot1 = imu1.get_rotation() * imu1Multi;
+        imuRot1 = imu1.get_rotation() * imu1Multi + imu1Increase;
         imuRot2 = 0;
         theta1 = thetaReset + ((imuRot1 * 2) * pi / 360);
         heading = theta1 * (180 / pi);

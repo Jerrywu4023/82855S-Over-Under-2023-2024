@@ -83,9 +83,12 @@ inline void farSide () {
     // touch elevation pole
     moveTurn = true;
 
-    desX -= 25;
-    desY = -10;
-    pros::delay(2000);
+    desX = -30;
+    desY = -15;
+    pros::delay(1000);
+
+    desX = -50;
+    pros::delay(1000);
 
     // touch pole
     moveTurn = false;
@@ -254,96 +257,119 @@ inline void skills () {
     cataL.move(127);
     cataR.move(127);
 
-    pros::delay(50000);
+    pros::delay(42000);
 
     cataL.move(0);
     cataR.move(0);
 
     intakeA.set_value(false);
 
-    /*// move across field
+    imu1Increase = -10;
+
+    // move across field
 
     desOrientation = -300;
     pros::delay(500);
 
     moveTurn = true;
 
-    desX = 10;
+    desX = 0;
     desY = -15;
 
-    for (int i = 0; i < 10; i++) {
-        desY -= 6.5;
-        pros::delay(300);
+    for (int i = 0; i < 5; i++) {
+        desY -= 15;
+        pros::delay(500);
     }
 
     pros::delay(500);
 
     // push right side
+    wingL.set_value(true);
+    wingR.set_value(true);
+
     moveTurn = false;
+
+    desOrientation = 100;
+    pros::delay(500);
 
     desOrientation = 120;
     pros::delay(500);
 
     moveTurn = true;
 
-    wingL.set_value(true);
-    wingR.set_value(false);
-
-    desX = 25;
-    desY = -105;
-    pros::delay(1500);
+    desX = 45;
+    desY = -110;
+    pros::delay(1000);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
-    desY = -50;
-    pros::delay(1500);
+    desX = 10;
+    desY = -80;
+    pros::delay(1000);
+
+    moveTurn = false;
+
+    desOrientation = 220;
+    pros::delay(500);
+
+    moveTurn = true;
+
+    desX = 60;
+    desY = -55;
+    pros::delay(1000);
 
     // push middle 1
+    wingL.set_value(true);
+    wingR.set_value(true);
+
     moveTurn = false;
-    
+
+    desOrientation = 150;
+    pros::delay(500);
+
     desOrientation = 170;
     pros::delay(500);
     
     moveTurn = true;
-
-    wingL.set_value(true);
-    wingR.set_value(true);
     
-    desX = 50;
-    desY = -95;
-    pros::delay(1500);
+    desX = 60;
+    desY = -105;
+    pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
-    desX = 65;
-    desY = -50;
+    desX = 80;
+    desY = -55;
     pros::delay(1500);
 
     // push middle 2
+    wingL.set_value(true);
+    wingR.set_value(true);
+
     moveTurn = false;
-    
+
+    desOrientation = 150;
+    pros::delay(500);
+
     desOrientation = 190;
     pros::delay(500);
     
     moveTurn = true;
-
-    wingL.set_value(true);
-    wingR.set_value(true);
     
     desX = 75;
-    desY = -95;
-    pros::delay(1500);
+    desY = -105;
+    pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
     desX = 95;
-    desY = -50;
+    desY = -55;
     pros::delay(1500);
 
-    // push left side
+    /*// push left side
     desY = -85;
     pros::delay(1000);
 
@@ -373,4 +399,177 @@ inline void test() {
     desX = 10;
     desY = 20;
     pros::delay(100000);
+}
+
+inline void closeSideNew() {
+    turnMulti = 3;
+
+    globalX = -35;
+    globalY = -8;
+
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    desX = -45;
+    desY = -8;
+    pros::delay(600);
+
+    // turn to elevation and intake triball
+
+    /*moveTurn = false;
+
+    desOrientation = 270;
+    pros::delay(500);*/
+
+    cataL.move(-127);
+    cataR.move(-127);
+
+    moveTurn = true;
+
+    // go to middle of field
+
+    // go back to starting pos and release triball
+    desX = 0;
+    desY = 0;
+    pros::delay(1500);
+
+    moveTurn = false;
+
+    desOrientation = 50;
+    pros::delay(800);
+    
+    moveTurn = true;
+
+    desX = 2;
+    desY = 3;
+    pros::delay(1000);
+
+    cataL.move(127);
+    cataR.move(127);
+    pros::delay(200);
+
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    cataL.move(0);
+    cataR.move(0);
+
+    // take matchload triball out
+
+    moveTurn = true;
+
+    wingR.set_value(true);
+
+    for (int i = 0; i < 3; i++) {
+        desX += 2;
+        desY += 3;
+        pros::delay(200);
+    }
+
+    // push elevation pole, preload, matchload triaball in goal
+    desX = 25;
+    desY = 40;
+
+    pros::delay(500);
+
+    wingR.set_value(false);
+
+    pros::delay(500);
+
+    // move to center of field
+    desX = 0;
+    desY = 0;
+    pros::delay(800);
+
+    // turn to right middle triball and intake
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    moveTurn = false;
+
+    desOrientation = 330;
+    pros::delay(500);
+
+    cataL.move(-127);
+    cataR.move(-127);
+
+    moveTurn = true;
+
+    desX = -50;
+    desY = 30;
+    pros::delay(1000);
+
+    // spit out triball
+    moveTurn = false;
+
+    desOrientation = 60;
+    pros::delay(500);
+
+    cataL.move(127);
+    cataR.move(127);
+
+    pros::delay(500);
+
+    // turn to middle back tribal and intake
+    desOrientation = 345;
+    pros::delay(500);
+
+    cataL.move(-127);
+    cataR.move(-127);
+
+    moveTurn = true;
+
+    desX = -50;
+    desY = 60;
+
+    pros::delay(1200);
+
+    // spit out triball
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(500);
+
+    cataL.move(127);
+    cataR.move(127);
+
+    pros::delay(300);
+
+    // push 3 middle triball across field
+    cataL.move(0);
+    cataR.move(0);
+
+    wingL.set_value(true);
+    wingR.set_value(true);
+
+    pros::delay(200);
+
+    moveTurn = true;
+
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    desX = 15;
+    pros::delay(800);
+
+    // touch pole
+    desX = -60;
+    desY = 25;
+    pros::delay(1000);
+
+    wingL.set_value(false);
+    wingR.set_value(false);
+
+    intakePistState = !intakePistState;
+    intakeA.set_value(intakePistState);
+
+    moveTurn = false;
+    
+    desOrientation = 180;
+    pros::delay(800);
+    
+    moveTurn = true;
+    desY -= 50;
+    desX -= 10;
+    pros::delay(1000);
 }

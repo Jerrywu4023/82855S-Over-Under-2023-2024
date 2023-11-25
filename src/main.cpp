@@ -32,18 +32,23 @@ void initialize() {
 
 	if (autonNum < 100) {
 		autonNum = 0;
+		thetaReset = 3 * pi / 2;
 		pros::lcd::print(1, "close side");
 	}
 	else if (autonNum < 500) {
 		autonNum = 1;
 		pros::lcd::print(1, "far side");
 	}
-	else {
+	else if (autonNum < 1000) {
 		autonNum = 2;
 		pros::lcd::print(1, "skills");
 	}
+	else {
+		autonNum = 3;
+		pros::lcd::print(1, "old close");
+	}
 
-	pros::delay(3000);
+	pros::delay(1000);
 
 }
 
@@ -58,9 +63,22 @@ void autonomous() {
 	pros::Task out(PowerOutput);
 	pros::delay(10);
 
-	if (autonNum == 0) closeSide();
-	else if (autonNum == 1) farSide();
-	else if (autonNum == 2) skills();
+	switch (autonNum) {
+		case 0:
+			closeSideNew();
+			break;
+		case 1:
+			farSide();
+			break;
+		case 2:
+			skills();
+			break;
+		case 3:
+			closeSide();
+			break;
+		default: 
+			break;
+	}
 }
 
 void opcontrol() {
