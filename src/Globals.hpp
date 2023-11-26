@@ -1,49 +1,41 @@
 #include "main.h"
 #include "pros/adi.hpp"
+#include "pros/distance.hpp"
 
 // Controller ###
 inline pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 // Motors ###
 // Drive
-inline pros::Motor LF(20, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor LM(19, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor LB(3, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);  //NOT UPDATED
+inline pros::Motor LF(20, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor LM(19, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor LB(10, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 
-inline pros::Motor RF(11, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor RM(12, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor RB(13, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES); //NOT UPDATED
+inline pros::Motor RF(11, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor RM(12, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor RB(9, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
+
+inline pros::Motor driveMotors[] = {LF, LM, LB, RF, RM, RB};
 
 
 // Cata - Intake
-inline pros::Motor cataL(17, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor cataR(14, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor cataL(17, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor cataR(14, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 
 // Pneumatics ###
 // Intake
-inline pros::ADIDigitalOut intakeA(10, 'A');
-inline pros::ADIDigitalOut intakeB(10, 'B');
+inline pros::ADIDigitalOut intakeA('F');
 
 // WALL
-inline pros::ADIDigitalOut wallL(10, 'C');
-inline pros::ADIDigitalOut wallR(10, 'D');
+inline pros::ADIDigitalOut wingL('E');
+inline pros::ADIDigitalOut wingR('D');
 
 // Endgame
-inline pros::ADIDigitalOut endgame(10, 'E');
+inline pros::ADIDigitalOut endgame('C');
 
 
 // Sensors ###
-// Tracking Wheel
-inline pros::Rotation SlEncode(14);
-inline pros::Rotation SsEncode(15);
+inline pros::Rotation cataPos(7);
 
-// Inertial Sensor
-inline pros::Imu imu1(16);
-inline pros::Imu imu2(8); //NOT UPDATED
-inline double imu1Multi = 1;
-inline double imu2Multi = 1;
-
-// Lim Switch
-inline int cataLimTop = (ADI_DIGITAL_IN, ('F', 10));
-inline int cataLimBot = (ADI_DIGITAL_IN, ('G', 10));
+inline pros::Distance autonSelect(2);

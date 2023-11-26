@@ -1,53 +1,97 @@
-#include "PID.cpp"
+#include "Autons.cpp"
 #include "pros/misc.h"
 
 void initialize() {
 	pros::lcd::initialize();
+	
+	// reset pneumatics
+	intakeA.set_value(false);
+	endgame.set_value(false);
+	wingL.set_value(wingLState);
+	wingR.set_value(wingRState);
+
+	// calibrate imu
+	imu1.reset();
+	imu2.reset();
+
+	// reset drive
+	driveTare();
+
+	// reset rot sensor
+	SlEncode.reset_position();
+	SsEncode.reset_position();
+	cataPos.reset();
+
+	pros::delay(1000);
+
+	// auton select
+
+	autonNum = autonSelect.get();
+
+	pros::lcd::print(0, "auton: %d", autonNum);
+
+	if (autonNum < 100) {
+		autonNum = 0;
+		thetaReset = 3 * pi / 2;
+		pros::lcd::print(1, "close side");
+	}
+	else if (autonNum < 500) {
+		autonNum = 1;
+		pros::lcd::print(1, "far side");
+	}
+	else if (autonNum < 1000) {
+		autonNum = 2;
+		pros::lcd::print(1, "skills");
+	}
+	else {
+		autonNum = 3;
+		pros::lcd::print(1, "old close");
+	}
+
+	pros::delay(1000);
+
 }
 
 void disabled() {}
 
 void competition_initialize() {}
 
-void autonomous() {}
+void autonomous() {
+	pros::Task Odom(odometry);
+	pros::Task move(coordMove);
+	pros::Task turning(turn);
+	pros::Task out(PowerOutput);
+	pros::delay(10);
+
+	switch (autonNum) {
+		case 0:
+			closeSideNew();
+			break;
+		case 1:
+			farSide();
+			break;
+		case 2:
+			skills();
+			break;
+		case 3:
+			closeSide();
+			break;
+		default: 
+			break;
+	}
+}
 
 void opcontrol() {
 	// Variables
-	bool driver = true;
-
-	int drivePower;
-	int turnPower;
-
-	bool cataState = 0;
-	bool cataButton;
-
-	bool intakeButton;
-	bool wallButton;
-	bool endgameButton;
-	bool endgameButton2;
-
+	int driveMode = 0;
+	auton = false;
 
 	// Control Loop
-	while (driver) {
+	while (driveMode != -1) {
 
-		// Get controller
-		drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-		turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
+		overUnder();
 
-		intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-		cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-		wallButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
-		endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
-		endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-
-		// move drive motors
-		moveL(drivePower * 2 + turnPower);
-		moveR(drivePower * 2 - turnPower);
-
-		pros::delay(20);
-
-
-
+		// Delay cotrol loop to not over work the brain
+		pros::delay(10);
 	}
 }
