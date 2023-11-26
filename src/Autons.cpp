@@ -11,8 +11,8 @@ inline void farSide () {
     // drive back to match loader
     turnMulti = 3;
 
-    desX = 10;
-    desY = -8;
+    desX = 8;
+    desY = -10;
     pros::delay(1200);
 
     // turn to match loader
@@ -30,15 +30,23 @@ inline void farSide () {
     for (int i = 0; i < 5; i++) {
         desX -= 3;
         desY += 3;
-        pros::delay(200);
+        pros::delay(300);
     }
 
+    desX -= 40;
+
+    pros::delay(1000);
+
     wingR.set_value(false);
+
+    desX += 55;
+
+    pros::delay(1500);
 
     // turn to middle of opponent offense zone
     moveTurn = false;
 
-    desOrientation = 20;
+    desOrientation = 40;
     pros::delay(500);
 
     // drive to middle of opponent offense zone
@@ -211,8 +219,8 @@ inline void closeSide () {
     pros::delay(1500);
 
     // touch pole
-    desX = -28;
-    desY = 20;
+    desX = -60;
+    desY = 25;
     pros::delay(1000);
 
     wingL.set_value(false);
@@ -223,12 +231,12 @@ inline void closeSide () {
 
     moveTurn = false;
     
-    desOrientation = 220;
+    desOrientation = 180;
     pros::delay(800);
     
     moveTurn = true;
+    desY -= 50;
     desX -= 10;
-    desY -= 10;
     pros::delay(1000);
     
 } 
@@ -249,7 +257,7 @@ inline void skills () {
     // turn to shoot
     moveTurn = false;
 
-    desOrientation = 345;
+    desOrientation = 330;
 
     pros::delay(500);
 
@@ -267,13 +275,12 @@ inline void skills () {
     imu1Increase = -10;
 
     // move across field
-
     desOrientation = -300;
     pros::delay(500);
 
     moveTurn = true;
 
-    desX = 0;
+    desX = -5;
     desY = -15;
 
     for (int i = 0; i < 5; i++) {
@@ -520,7 +527,7 @@ inline void closeSideNew() {
     moveTurn = true;
 
     desX = -50;
-    desY = 60;
+    desY = 55;
 
     pros::delay(1200);
 
