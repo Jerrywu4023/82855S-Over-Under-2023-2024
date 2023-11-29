@@ -246,7 +246,7 @@ inline void closeSide () {
 
 inline void skills () {
     // move to matchlaod
-    turnMulti = 3;
+    turnMulti = 2;
 
     intakeA.set_value(true);
 
@@ -257,7 +257,7 @@ inline void skills () {
     // turn to shoot
     moveTurn = false;
 
-    desOrientation = 330;
+    desOrientation = 335;
 
     pros::delay(500);
 
@@ -272,11 +272,11 @@ inline void skills () {
 
     intakeA.set_value(false);
 
-    imu1Increase = -10;
+    imu1Increase = -8;
 
     // move across field
-    desOrientation = -300;
-    pros::delay(500);
+    desOrientation = -180;
+    pros::delay(1000);
 
     moveTurn = true;
 
@@ -284,47 +284,47 @@ inline void skills () {
     desY = -15;
 
     for (int i = 0; i < 5; i++) {
-        desY -= 15;
+        desY -= 18;
         pros::delay(500);
     }
 
-    pros::delay(500);
+    pros::delay(1000);
 
     // push right side
-    wingL.set_value(true);
-    wingR.set_value(true);
+    wingL.set_value(false);
+    wingR.set_value(false);
 
     moveTurn = false;
 
-    desOrientation = 100;
+    desOrientation = 160;
     pros::delay(500);
 
-    desOrientation = 120;
+    desOrientation = 160;
     pros::delay(500);
 
     moveTurn = true;
 
     desX = 45;
-    desY = -110;
-    pros::delay(1000);
+    desY = -120;
+    pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
     desX = 10;
-    desY = -80;
+    desY = -90;
     pros::delay(1000);
 
     moveTurn = false;
 
-    desOrientation = 220;
+    desOrientation = 250;
     pros::delay(500);
 
     moveTurn = true;
 
     desX = 60;
     desY = -55;
-    pros::delay(1000);
+    pros::delay(1200);
 
     // push middle 1
     wingL.set_value(true);
@@ -342,7 +342,7 @@ inline void skills () {
     
     desX = 60;
     desY = -105;
-    pros::delay(1200);
+    pros::delay(1500);
 
     wingL.set_value(false);
     wingR.set_value(false);
@@ -367,7 +367,7 @@ inline void skills () {
     
     desX = 75;
     desY = -105;
-    pros::delay(1200);
+    pros::delay(1500);
 
     wingL.set_value(false);
     wingR.set_value(false);
