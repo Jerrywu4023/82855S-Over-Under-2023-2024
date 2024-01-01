@@ -29,8 +29,11 @@ inline pros::ADIDigitalOut wingL('E');
 inline pros::ADIDigitalOut wingR('D');
 
 // Endgame
-inline pros::ADIDigitalOut endgame('C');
+inline pros::ADIDigitalOut passiveEndgame('C');
 
+// Blocker
+inline pros::ADIDigitalOut blocker('A');
+inline pros::ADIDigitalOut hang('B');
 
 // Sensors ###
 inline pros::Rotation cataPos(7);

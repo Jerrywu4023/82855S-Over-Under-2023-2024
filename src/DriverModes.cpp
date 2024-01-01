@@ -13,113 +13,16 @@ inline bool prevCataToggle = false;
 inline bool autoLower = false;
 inline bool cataReset;
 
-inline bool cataDisable = false;
-inline bool prevDisable = false;
-
 inline bool intakeButton;
 inline bool intakeReverse;
-inline bool wallButton;
-inline bool endgameButton;
-inline bool endgameButton2;
+inline bool endgameButtonA;
+inline bool endgameButtonB;
 
-inline bool intakeExtend;
-inline bool prevExtend = false;
-inline bool intakePistState = false;
+inline bool wingROn, wingLOn;
 
-inline bool wingOn, wingLOn, wingROn, wingOff;
-inline int wingLState = 0;
-inline int wingRState = 0;
-
-/**
- * @brief Driver mode
- * press active catapult
- * auto lower catapult
- */
-inline void basicDriver() {
-    // Get controller
-    // joysticks
-    drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1;
-
-    // buttons
-    intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    cataDisable = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
-
-    endgameButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
-    endgameButton2 = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
-
-    wingOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
-    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
-    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-    wingOff = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
-
-    // Drive - move drive motors
-    moveL(drivePower * 2 - turnPower);
-    moveR(drivePower * 2 + turnPower);
-
-    /* Intake Cata system ###
-
-    if cata == up (1), run cata
-    else if cata button == true, run cata
-    else if intake == true, reverse cata (intake will not move when cata moving)
-    else let cata motor loose (0 power) */
-
-    if (driverCataState == 0 || cataButton == true) { // cata is up and not disabled or driver moving cata
-        cataR.move(127);
-        cataL.move(127);
-    } else if (intakeButton == true) { // cata down or disabled, safe to run intake
-        cataR.move(-127);
-        cataL.move(-127);
-    } else { // no need to move cata
-        cataR.move(0);
-        cataL.move(0);
-    }
-
-    /* Cata state control ###
-    if disable button pressed, change disable state
-    0, 1 --> 2
-    2 --> 0 (will set to 1 if cata is down, from code after)
-
-    if cata not disabled
-        if pos > 85, state set to 1
-        if pos < 10, state set to 0
-    */
-    // update disable
-    if (cataDisable == true && prevDisable == false) { // the instant that disable button pressed
-        if (driverCataState != 2) driverCataState = 2;
-        else driverCataState = 0;
-    }
-
-    // update state
-    if (driverCataState != 2) { //  auto cata is on
-        if (cataPos.get_position() > 85) driverCataState = 1;
-        if (cataPos.get_position() < 10) driverCataState = 0;
-    }
-
-    /*
-    Wings ###
-    0 = off, 1 = on
-
-    BUTTON    LEFT      RIGHT
-    wingOn    1         1
-    wingLOn   1         no change
-    wingROn   no change 1
-    wingOff   0         0
-    */
-    
-    // left wing
-    if (wingOn || wingLOn) wingLState = 1;
-    if (wingOff) wingLState = 0;
-
-    // right wing
-    if (wingOn || wingROn) wingRState = 1;
-    if (wingOff) wingRState = 0;
-
-    // set wing state
-    wingL.set_value(wingLState);
-    wingR.set_value(wingRState);
-}
+inline bool blockerSwitch = false;
+inline bool prevBlocker = false;
+inline bool blockerState = false;
 
 
 /**
@@ -135,7 +38,8 @@ inline void overUnder() {
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeExtend = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
+    intakeReverse = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
     cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
@@ -143,30 +47,23 @@ inline void overUnder() {
     wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
 
+    blockerSwitch = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
+
+    endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+
     // Drive - move drive motors
     movePL(drivePower - turnPower);
     movePR(drivePower + turnPower);
 
-    /* Intake Cata system ###
-    if toggleState == 0, stop cata
-    if toggleState == 1, run cata
+    // Intake
+    if (intakeButton) intakeA.move(127);
+    else if (intakeReverse) intakeA.move(-127);
+    else intakeA.move(0);
 
-    if intake button, reverse cata
-    if intake reverse, run cata 
-
-    if holding cata button, run cata
-    */
-
-    if (matchloadCataState || intakeReverse || cataButton || autoLower) {
-        cataL.move(127);
-        cataR.move(127);
-    } else if (intakeButton) {
-        cataL.move(-127);
-        cataR.move(-127);
-    } else {
-        cataL.move(0);
-        cataR.move(0);
-    }
+    // Cata move
+    if (matchloadCataState || cataButton || autoLower) cataA.move(127);
+    else cataA.move(0);
 
     /* Auto lower cata ###
     Automatically lowers cata when desired
@@ -178,50 +75,35 @@ inline void overUnder() {
     */ 
     if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 27000) autoLower = false; // set auto to false, 100000 = disabled
+    if (cataPos.get_position() < 100000) autoLower = false; // set auto to false, 100000 = disabled
 
-
-    /* Cata state control ###
-    Cata state switches the instant button pressed
+    /* Cata and blocker state control ###
+    Cata/blocker state switches the instant button pressed
     The instant is when current button state == true
     and previous button state == false
     */
 
-    // update state
+    // Cata state control
     if (cataToggle && !prevCataToggle) matchloadCataState = !matchloadCataState;
-
     prevCataToggle = cataToggle;
 
-    /*
-    Intake extend ###
-    button press to change intake extension state
-    */
-    intakeA.set_value(intakePistState);
+    // Blocker state control
+    if (blockerSwitch && !prevBlocker) {
+        blockerState = ! blockerState;
+        hang.set_value(false); // releases accidental hang
+    }
+    prevBlocker = blockerSwitch;
 
-    if (intakeExtend && !prevExtend) intakePistState = !intakePistState;
-
-    prevExtend = intakeExtend;
-
-    /*
-    Wings ###
-    0 = off, 1 = on
-
-    BUTTON    LEFT      RIGHT
-    wingOn    1         1
-    wingLOn   1         no change
-    wingROn   no change 1
-    wingOff   0         0
-    */
-    
-    // left wing
-    if (wingOn || wingLOn) wingLState = 1;
-    if (wingOff) wingLState = 0;
-
-    // right wing
-    if (wingOn || wingROn) wingRState = 1;
-    if (wingOff) wingRState = 0;
-
-    // set wing state
+    // Wings
     wingL.set_value(wingLOn);
     wingR.set_value(wingROn);
+
+    // Blocker
+    blocker.set_value(blockerState);
+
+    // Endgame
+    if (endgameButtonA && endgameButtonB) {
+        hang.set_value(true);
+        passiveEndgame.set_value(true);
+    }
 }

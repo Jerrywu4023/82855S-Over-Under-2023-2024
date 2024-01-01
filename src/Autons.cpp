@@ -78,10 +78,6 @@ inline void farSide () {
     desX += 30;
     pros::delay(800);
 
-    // open intake
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     // turn to elevation pole
     moveTurn = false;
 
@@ -148,9 +144,6 @@ inline void closeSide () {
     desY = -8;
     pros::delay(1000);
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     // turn to elevation and intake triball
     moveTurn = false;
 
@@ -207,9 +200,6 @@ inline void closeSide () {
     cataL.move(0);
     cataR.move(0);
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     moveTurn = true;
 
     turnMulti -= 1;
@@ -226,8 +216,6 @@ inline void closeSide () {
     wingL.set_value(false);
     wingR.set_value(false);
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
 
     moveTurn = false;
     
@@ -270,9 +258,7 @@ inline void skills () {
     cataL.move(0);
     cataR.move(0);
 
-    intakeA.set_value(false);
-
-    imu1Increase = -8;
+    imu1Increase = 0;
 
     // move across field
     desOrientation = -180;
@@ -414,9 +400,6 @@ inline void closeSideNew() {
     globalX = -35;
     globalY = -8;
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     desX = -45;
     desY = -8;
     pros::delay(600);
@@ -455,9 +438,6 @@ inline void closeSideNew() {
     cataR.move(127);
     pros::delay(200);
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     cataL.move(0);
     cataR.move(0);
 
@@ -489,9 +469,6 @@ inline void closeSideNew() {
     pros::delay(800);
 
     // turn to right middle triball and intake
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     moveTurn = false;
 
     desOrientation = 330;
@@ -553,9 +530,6 @@ inline void closeSideNew() {
 
     moveTurn = true;
 
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
-
     desX = 15;
     pros::delay(800);
 
@@ -566,9 +540,6 @@ inline void closeSideNew() {
 
     wingL.set_value(false);
     wingR.set_value(false);
-
-    intakePistState = !intakePistState;
-    intakeA.set_value(intakePistState);
 
     moveTurn = false;
     
