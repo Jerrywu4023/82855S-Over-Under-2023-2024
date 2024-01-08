@@ -27,26 +27,47 @@ void initialize() {
 
 	// auton select
 
-	autonNum = autonSelect.get();
+	autonNum = autonSelect.get_angle();
+	double size = 40; // angle in degrees per auton option
 
 	pros::lcd::print(0, "auton: %d", autonNum);
 
-	if (autonNum < 100) {
-		autonNum = 0;
-		thetaReset = 3 * pi / 2;
+	if (autonNum < size * 1) {
+		autonNum = 1;
+		thetaReset = 3 * pi / 2; // 270 deg
 		pros::lcd::print(1, "close side");
 	}
-	else if (autonNum < 500) {
-		autonNum = 1;
+	else if (autonNum < size * 2) {
+		autonNum = 2;
 		pros::lcd::print(1, "far side");
 	}
-	else if (autonNum < 1000) {
-		autonNum = 2;
-		pros::lcd::print(1, "skills");
+	else if (autonNum < size * 3) {
+		autonNum = 3;
+		pros::lcd::print(1, "aaa");
+	}
+	else if (autonNum < size * 4) {
+		autonNum = 4;
+		pros::lcd::print(1, "aaa");
+	}
+	else if (autonNum < size * 5) {
+		autonNum = 5;
+		pros::lcd::print(1, "aaa");
+	}
+	else if (autonNum < size * 6) {
+		autonNum = 6;
+		pros::lcd::print(1, "aaa");
+	}
+	else if (autonNum < size * 7) {
+		autonNum = 7;
+		pros::lcd::print(1, "aaa");
+	}
+	else if (autonNum < size * 8) {
+		autonNum = 8;
+		pros::lcd::print(1, "aaa");
 	}
 	else {
-		autonNum = 3;
-		pros::lcd::print(1, "old close");
+		autonNum = 0;
+		pros::lcd::print(1, "aaa");
 	}
 
 	pros::delay(1000);
@@ -65,17 +86,17 @@ void autonomous() {
 	pros::delay(10);
 
 	switch (autonNum) {
-		case 0:
-			closeSideNew();
-			break;
 		case 1:
-			farSide();
-			break;
+			netSideQ();
+			break;	
 		case 2:
-			skills();
+			loadSideQ();
 			break;
 		case 3:
-			closeSide();
+			skills();
+			break;
+		case 4:
+			netSideOld();
 			break;
 		default: 
 			break;

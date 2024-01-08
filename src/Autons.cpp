@@ -2,7 +2,7 @@
 
 inline int autonNum;
 
-inline void farSide () {
+inline void loadSideQ () {
     // push alliance triball to opponent goal
     desX = 22;
     desY = -40;
@@ -104,7 +104,7 @@ inline void farSide () {
 // ##############################################################################################
 // ##############################################################################################
 
-inline void closeSide () {
+inline void netSideOld () {
     turnMulti = 3;
 
     globalX = 10;
@@ -150,8 +150,7 @@ inline void closeSide () {
     desOrientation = 270;
     pros::delay(800);
 
-    cataL.move(-127);
-    cataR.move(-127);
+    intakeA.move(127);
 
     moveTurn = true;
 
@@ -159,10 +158,7 @@ inline void closeSide () {
     desY = -8;
     pros::delay(1800);
 
-    // move back to starting pos and curve to the side
-    cataL.move(-120);
-    cataR.move(-120);
-    
+    // move back to starting pos and curve to the side    
     desX = 10;
     desY = -8;
 
@@ -192,13 +188,11 @@ inline void closeSide () {
     wingL.set_value(true);
     wingR.set_value(true);
 
-    cataL.move(127);
-    cataR.move(127);
+    intakeA.move(-127);
     pros::delay(300);
 
     // close intake and push triballs
-    cataL.move(0);
-    cataR.move(0);
+    intakeA.move(0);
 
     moveTurn = true;
 
@@ -236,8 +230,6 @@ inline void skills () {
     // move to matchlaod
     turnMulti = 2;
 
-    intakeA.set_value(true);
-
     desX = -10;
     desY = 15;
     pros::delay(500);
@@ -250,13 +242,11 @@ inline void skills () {
     pros::delay(500);
 
     // matchload
-    cataL.move(127);
-    cataR.move(127);
+    cataA.move(127);
 
     pros::delay(42000);
 
-    cataL.move(0);
-    cataR.move(0);
+    intakeA.move(0);
 
     imu1Increase = 0;
 
@@ -394,7 +384,7 @@ inline void test() {
     pros::delay(100000);
 }
 
-inline void closeSideNew() {
+inline void netSideQ() {
     turnMulti = 3;
 
     globalX = -35;
@@ -411,8 +401,7 @@ inline void closeSideNew() {
     desOrientation = 270;
     pros::delay(500);*/
 
-    cataL.move(-127);
-    cataR.move(-127);
+    intakeA.move(127);
 
     moveTurn = true;
 
@@ -434,12 +423,10 @@ inline void closeSideNew() {
     desY = 3;
     pros::delay(1000);
 
-    cataL.move(127);
-    cataR.move(127);
+    intakeA.move(-127);
     pros::delay(200);
 
-    cataL.move(0);
-    cataR.move(0);
+    intakeA.move(0);
 
     // take matchload triball out
 
@@ -474,8 +461,7 @@ inline void closeSideNew() {
     desOrientation = 330;
     pros::delay(500);
 
-    cataL.move(-127);
-    cataR.move(-127);
+    intakeA.move(127);
 
     moveTurn = true;
 
@@ -489,8 +475,7 @@ inline void closeSideNew() {
     desOrientation = 60;
     pros::delay(500);
 
-    cataL.move(127);
-    cataR.move(127);
+    intakeA.move(-127);
 
     pros::delay(500);
 
@@ -498,8 +483,7 @@ inline void closeSideNew() {
     desOrientation = 345;
     pros::delay(500);
 
-    cataL.move(-127);
-    cataR.move(-127);
+    intakeA.move(127);
 
     moveTurn = true;
 
@@ -514,14 +498,12 @@ inline void closeSideNew() {
     desOrientation = 90;
     pros::delay(500);
 
-    cataL.move(127);
-    cataR.move(127);
+    intakeA.move(-127);
 
     pros::delay(300);
 
     // push 3 middle triball across field
-    cataL.move(0);
-    cataR.move(0);
+    intakeA.move(0);
 
     wingL.set_value(true);
     wingR.set_value(true);

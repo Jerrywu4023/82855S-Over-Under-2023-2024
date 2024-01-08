@@ -25,17 +25,17 @@ inline pros::Motor intakeA(6, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENC
 
 // Pneumatics ###
 // WALL
-inline pros::ADIDigitalOut wingL('E');
-inline pros::ADIDigitalOut wingR('D');
+inline pros::ADIDigitalOut wingL({{21, 'B'}});
+inline pros::ADIDigitalOut wingR({{21, 'A'}});
 
 // Endgame
-inline pros::ADIDigitalOut passiveEndgame('C');
+inline pros::ADIDigitalOut passiveEndgame({{21, 'E'}});
 
 // Blocker
-inline pros::ADIDigitalOut blocker('A');
-inline pros::ADIDigitalOut hang('B');
+inline pros::ADIDigitalOut blocker({{21, 'D'}});
+inline pros::ADIDigitalOut hang({{21, 'C'}});
 
 // Sensors ###
 inline pros::Rotation cataPos(7);
 
-inline pros::Distance autonSelect(2);
+inline pros::ADIPotentiometer autonSelect({{21, 'H'}});
