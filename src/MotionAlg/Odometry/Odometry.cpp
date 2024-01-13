@@ -17,6 +17,7 @@
 
 inline void odometry () {    
     // constant loop to update odom values
+    pros::lcd::print(0, "A");
     while (enableOdom) {
         // Get encoder values
         totalL = SlEncode.get_position();

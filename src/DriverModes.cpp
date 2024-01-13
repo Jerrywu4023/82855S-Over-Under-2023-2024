@@ -38,14 +38,14 @@ inline void overUnder() {
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    intakeReverse = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    intakeReverse = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
 
     cataButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     cataToggle = master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT);
-    cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
+    cataReset = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
 
-    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
+    wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
 
     blockerSwitch = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 

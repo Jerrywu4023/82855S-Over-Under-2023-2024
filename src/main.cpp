@@ -104,13 +104,16 @@ void autonomous() {
 }
 
 void opcontrol() {
+	pros::lcd::print(0,"b");
 	// Variables
 	int driveMode = 0;
 	auton = false;
 
+	pros::Task Odom(odometry);
+	
 	// Control Loop
 	while (driveMode != -1) {
-
+		
 		overUnder();
 
 		// Delay cotrol loop to not over work the brain

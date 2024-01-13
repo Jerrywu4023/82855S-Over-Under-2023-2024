@@ -7,8 +7,8 @@ inline double pi = 3.14159265359;
 inline bool enableOdom = true;
 
 // tracking wheel dist to center
-inline double Sl = 0;
-inline double Ss = 0;
+inline double Sl = 0.25;
+inline double Ss = 1.6;
 
 // tracking wheel diameters (inches)
 inline double wheelL = 2.75;
@@ -61,14 +61,14 @@ inline double heading; // robot heading in degrees (0 - 359)
 // Sensors
 // Rotation Sensor
 inline pros::Rotation SlEncode(16);
-inline pros::Rotation SsEncode(15);
+inline pros::Rotation SsEncode(15, true);
 
 // Inertial Sensor
-inline pros::Imu imu1(5);
-inline pros::Imu imu2(10);
+inline pros::Imu imu1(10);
+inline pros::Imu imu2(5);
 
 // imu error compensations
-inline double imu1Multi = 1;
+inline double imu1Multi = 1.00598;
 inline double imu2Multi = 1;
 
 inline double imu1Increase = 0;
