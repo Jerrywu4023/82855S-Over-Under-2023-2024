@@ -85,7 +85,9 @@ void autonomous() {
 	pros::Task out(PowerOutput);
 	pros::delay(10);
 
-	switch (autonNum) {
+	netSideRush();
+
+	/*switch (autonNum) {
 		case 1:
 			netSideQ();
 			break;	
@@ -100,7 +102,7 @@ void autonomous() {
 			break;
 		default: 
 			break;
-	}
+	}*/
 }
 
 void opcontrol() {

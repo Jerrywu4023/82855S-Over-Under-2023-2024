@@ -533,3 +533,188 @@ inline void netSideQ() {
     desX -= 10;
     pros::delay(1000);
 }
+
+// ##############################################################################################
+// ##############################################################################################
+
+inline void netSideRush() {
+    turnMulti = 3;
+
+    // push preload to goal with wing
+    wingR.set_value(true);
+
+    // move to centre centre triball (1)
+    intakeA.move(-127);// unhook
+
+    desX = -35;
+    desY = 47;
+    pros::delay(500);
+    intakeA.move(127);
+    wingR.set_value(false);
+    pros::delay(1000);
+
+    // turn to goal
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(800);
+
+    wingL.set_value(true);
+
+    // push (1) and centre right (2)
+    turnMulti = 2;
+    moveTurn = true;
+
+    desX = 20;
+    desY = 42;
+    pros::delay(400);
+    intakeA.move(-127);
+    pros::delay(600);
+
+    // move back turn to centre down (3)
+    wingL.set_value(false);
+
+    desX = 0;
+    pros::delay(300);
+
+    moveTurn = false;
+
+    desOrientation = 210;
+    pros::delay(500);
+
+    // intake (3)
+    intakeA.move(127);
+
+    moveTurn = true;
+
+    desX = -40;
+    desY = 20;
+    pros::delay(1500);
+
+    // turn to goal
+    moveTurn = false;
+
+    desOrientation = 20;
+    pros::delay(1000);
+
+    // push (3)
+    turnMulti = 4;
+    moveTurn = true;
+
+    desX = 20;
+    desY = 40;
+    pros::delay(500);
+    intakeA.move(-127);
+    pros::delay(700);
+
+    // move back to start
+    desX = 5;
+    pros::delay(200);
+
+    desX = -5;
+    desY = -10;
+    pros::delay(1500);
+
+    // push out matchload (5)
+    turnMulti = 1.5;
+    moveTurn = false;
+
+    desOrientation = 60;
+    pros::delay(1000);
+
+    intakeA.move(-127);
+    wingR.set_value(true);
+
+    moveTurn = true;
+
+    desX = 15;
+    desY = 5;
+    pros::delay(1500);
+
+    wingR.set_value(false);
+
+    // push (4) (5) prelaod
+    moveTurn = false;
+    
+    desOrientation = 250;
+    pros::delay(1000);
+
+    moveTurn = true;
+
+    desX = 15;
+    desY = 30;
+    pros::delay(1000);
+}
+
+// ##############################################################################################
+// ##############################################################################################
+
+inline void matchloadRush() {
+    turnMulti = 3;
+
+    // push preload to goal with wing
+    wingL.set_value(true);
+
+    // move to centre centre triball (1)
+    intakeA.move(-127); // unhook
+
+    desX = 6;
+    desY = 46.5;
+    pros::delay(500);
+    intakeA.move(127);
+    wingL.set_value(false);
+    pros::delay(1500);
+
+    intakeA.move(0);
+
+    // move back to starting position
+    desX = -5;
+    desY = 0;
+    pros::delay(1500);
+
+    // turn to goal and push preload
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(500);
+    
+    turnMulti = 2;
+    moveTurn = true;
+
+    desX = -15;
+    desY = 0;
+    pros::delay(1000);
+
+    desX = -27;
+    desY = 35;
+    pros::delay(1000);
+
+    // take out matchload
+    desX = -20;
+    desY = 0;
+    pros::delay(1000);
+
+    wingR.set_value(true);
+
+    desX = -5;
+    desY = -10;
+    pros::delay(1000);
+
+    moveTurn = false;
+
+    desOrientation = 30;
+    pros::delay(300);
+    desOrientation = 95;
+    pros::delay(1500);
+
+    moveTurn = true;
+
+    wingR.set_value(false);
+
+    // push triballs and touch elevation pole
+    desX = 25;
+    desY = -8;
+    pros::delay(1000);
+    intakeA.move(-127);
+    pros::delay(1000);
+}
