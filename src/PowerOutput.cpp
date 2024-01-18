@@ -9,11 +9,21 @@
 inline void PowerOutput () {
     while (auton) {
         if (!disableOdomControl) {
-            // move left
-            movePL((desDrive + desTurn) * 1);
+            if (moveTurn) {
+                // move left
+                movePL((desDrive + desTurn) * 1);
 
-            // move right
-            movePR((desDrive - desTurn) * 1);
+                // move right
+                movePR((desDrive - desTurn) * 1);
+            }
+
+            else {
+                // move left
+                moveL(desTurn);
+
+                // move right
+                moveR(-desTurn);
+            }
         }
 
         pros::lcd::print(2, "distance: %f", distance);

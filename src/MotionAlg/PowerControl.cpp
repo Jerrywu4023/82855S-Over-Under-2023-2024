@@ -19,7 +19,7 @@ inline double desTurn;
 inline double Xdiff, Ydiff;
 inline double distance, angle;
 
-inline double turnMulti = 5;
+inline double turnMulti = 3;
 
 
 /**
@@ -34,7 +34,7 @@ inline void coordMove() {
 			Ydiff = desY - globalY; // distance needed to travel in y direction
 
             // get distance and angle
-			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.7; // distance from desired locaion
+			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.4; // distance from desired locaion
 			angle = atan2(Xdiff, Ydiff) * 180 / pi - heading; // get direction of deired location according to robot heading
 
             // keep angle within [-180, 180]
@@ -77,22 +77,22 @@ inline void turn() {
             if (desOrientation < heading) { // Desired orientation is left of current heading in the 0 to 360 range
                 
                 if (heading - desOrientation < 180) { // Left turn closer, negative power
-                    desTurn = (desOrientation - heading) * 2;
+                    desTurn = (desOrientation - heading) * 1.95;
                 } 
                 
                 else { // Right turn closer, positive power by adding 360
-                    desTurn = (desOrientation + 360 - heading) * 2;
+                    desTurn = (desOrientation + 360 - heading) * 1.95;
                 }
             } 
             
             else { // Desired orientation is right of the current heading in the 0 to 360 range
                 
                 if (desOrientation - heading < 180) { // Right turn closer, positive power
-                    desTurn = (desOrientation - heading) * 2;
+                    desTurn = (desOrientation - heading) * 1.95;
                 } 
                 
                 else { // Left turn closer, negative power
-                    desTurn = (desOrientation - 360 - heading) * 2;
+                    desTurn = (desOrientation - 360 - heading) * 1.95;
                 }
             }
         }
