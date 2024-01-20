@@ -49,8 +49,8 @@ inline void overUnder() {
 
     blockerSwitch = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 
-    endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
-    endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
 
     // Drive - move drive motors
     movePL(drivePower - turnPower);
@@ -73,9 +73,10 @@ inline void overUnder() {
     auto lower set to true when button pressed
     auto lower set to false when position reached
     */ 
-    if (cataReset) autoLower = true; // set auto to true
+    //if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 100000) autoLower = false; // set auto to false, 100000 = disabled
+    if (cataPos.get_position() < 1200) autoLower = false; // set auto to false, 100000 = disabled
+    else autoLower = true;
 
     /* Cata and blocker state control ###
     Cata/blocker state switches the instant button pressed
@@ -103,7 +104,8 @@ inline void overUnder() {
 
     // Endgame
     if (endgameButtonA && endgameButtonB) {
+        blockerState = false;
         hang.set_value(true);
-        passiveEndgame.set_value(true);
+        //passiveEndgame.set_value(true);
     }
 }

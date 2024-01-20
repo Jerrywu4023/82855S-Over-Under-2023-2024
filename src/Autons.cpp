@@ -584,8 +584,8 @@ inline void netSideRush() {
     // move to centre centre triball (1)
     intakeA.move(-127);// unhook
 
-    desX = -32;
-    desY = 45;
+    desX = -35;
+    desY = 49;
     pros::delay(500);
     intakeA.move(127);
     wingR.set_value(false);
@@ -597,37 +597,41 @@ inline void netSideRush() {
     desOrientation = 90;
     pros::delay(700);
 
+    wingL.set_value(true);
     wingR.set_value(true);
 
     // push (1) and centre right (2)
     turnMulti = 2;
     moveTurn = true;
 
-    desX = 25;
+    desX = 20;
     desY = 40;
     pros::delay(400);
     intakeA.move(-127);
-    pros::delay(600);
+    pros::delay(500);
 
     // move back turn to centre down (3)
+    wingL.set_value(false);
     wingR.set_value(false);
 
-    desX = -15;
-    pros::delay(500);
+    intakeA.move(0);
+
+    desX = -50;
+    pros::delay(200);
 
     moveTurn = false;
 
-    desOrientation = 220;
-    pros::delay(500);
+    desOrientation = 200;
+    pros::delay(800);
 
     // intake (3)
     intakeA.move(127);
 
     moveTurn = true;
 
-    desX = -33;
-    desY = 17;
-    pros::delay(1000);
+    desX = -50;
+    desY = 16;
+    pros::delay(950);
 
     /*// turn to goal
     moveTurn = false;
@@ -646,9 +650,10 @@ inline void netSideRush() {
     pros::delay(700);*/
 
     // extra
-    desX = 0;
-    desY = 10;
+    moveTurn = false;
+    desOrientation = 300;
     pros::delay(500);
+    moveTurn = true;
 
     // move back to start
     /*desX = -15;
@@ -661,9 +666,9 @@ inline void netSideRush() {
 
     moveTurn = true;*/
 
-    desX = 0;
-    desY = -22;
-    pros::delay(1000);
+    desX = -5;
+    desY = -13;
+    pros::delay(1300);
 
     // release (3)
     moveTurn = false;
@@ -675,25 +680,29 @@ inline void netSideRush() {
     pros::delay(300);
 
     // move to elevation (4)
-    desOrientation = 270;
-    pros::delay(700);
+    desOrientation = 250;
+    pros::delay(800);
 
     intakeA.move(127);
 
     moveTurn = true;
-    desX = -40;
-    desY = -15;
-    pros::delay(1000);
+    desX = -50;
+    desY = -10;
+    pros::delay(1200);
 
-    desX = 18;
-    desY = -5;
+    desX = 6;
+    desY = .5;
     pros::delay(1200);
 
     moveTurn = false;
 
     // return and release (4)
+    desOrientation = 330;
+    pros::delay(400);
+
     desOrientation = 60;
     pros::delay(700);
+
 
     intakeA.move(-127);
 
@@ -704,27 +713,27 @@ inline void netSideRush() {
     desOrientation = 350;
     pros::delay(300);
 
-    wingR.set_value(false);
-
     // push (4) (5) prelaod
     
-    desOrientation = 250;
+    desOrientation = 220;
     pros::delay(500);
+
+    wingR.set_value(false);
 
     moveTurn = true;
 
     desX = 25;
-    desY = 30;
+    desY = 35;
     pros::delay(1000);
 
     auton = false;
 
     movePL(127);
     movePR(127);
-    pros::delay(500);
+    pros::delay(300);
 
     movePL(-127);
-    movePR(-127);
+    movePR(-40);
     pros::delay(1000);
 
     movePL(127);

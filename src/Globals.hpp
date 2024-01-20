@@ -36,6 +36,6 @@ inline pros::ADIDigitalOut blocker({{21, 'D'}});
 inline pros::ADIDigitalOut hang({{21, 'C'}});
 
 // Sensors ###
-inline pros::Rotation cataPos(7);
+inline pros::Rotation cataPos(11);
 
 inline pros::ADIPotentiometer autonSelect({{21, 'H'}});
