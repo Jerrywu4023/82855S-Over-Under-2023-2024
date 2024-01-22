@@ -79,7 +79,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-	//thetaReset = 3 * pi / 2;
+	thetaReset = 3 * pi / 2;
 	pros::Task Odom(odometry);
 	pros::Task move(coordMove);
 	pros::Task turning(turn);
@@ -87,7 +87,8 @@ void autonomous() {
 	pros::delay(10);
 
 	//test();
-	netSideRush();
+	//netSideRush();
+	skills();
 
 	/*switch (autonNum) {
 		case 1:

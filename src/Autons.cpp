@@ -227,12 +227,23 @@ inline void netSideOld () {
 // ##############################################################################################
 
 inline void skills () {
-    // move to matchlaod
-    turnMulti = 2;
+    // push alliance
+    turnMulti = 4;
+    intakeA.move(-127);
 
-    desX = -10;
-    desY = 15;
-    pros::delay(500);
+    desX = 40;
+    desY = 20;
+    pros::delay(1000);
+
+    turnMulti = 3;
+    intakeA.move(0);
+
+    // move to matchlaod
+    desX = -7;
+    desY = 13;
+    pros::delay(800);
+
+    wingL.set_value(true);
 
     // turn to shoot
     moveTurn = false;
@@ -244,27 +255,29 @@ inline void skills () {
     // matchload
     cataA.move(127);
 
-    pros::delay(42000);
+    pros::delay(2000);
 
-    intakeA.move(0);
+    wingL.set_value(false);
+
+    cataA.move(0);
 
     imu1Increase = 0;
 
     // move across field
-    desOrientation = -180;
-    pros::delay(1000);
+    desOrientation = 10;
+    pros::delay(500);
 
     moveTurn = true;
 
-    desX = -5;
+    desX = 0;
     desY = -15;
 
-    for (int i = 0; i < 5; i++) {
-        desY -= 18;
+    for (int i = 0; i < 3; i++) {
+        desY -= 22;
         pros::delay(500);
     }
 
-    pros::delay(1000);
+    pros::delay(500);
 
     // push right side
     wingL.set_value(false);
@@ -272,24 +285,33 @@ inline void skills () {
 
     moveTurn = false;
 
-    desOrientation = 160;
-    pros::delay(500);
-
-    desOrientation = 160;
+    desOrientation = 345;
     pros::delay(500);
 
     moveTurn = true;
 
     desX = 45;
-    desY = -120;
+    desY = -110;
     pros::delay(1200);
+
+    desX = 0;
+    desY = -90;
+    pros::delay(1000);
+
+    desX = 50;
+    desY = -110;
+    pros::delay(1000);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
+    desX = 0;
+    desY = -80;
+    pros::delay(500);
+
     desX = 10;
-    desY = -90;
-    pros::delay(1000);
+    desY = -70;
+    pros::delay(500);
 
     moveTurn = false;
 
@@ -298,65 +320,98 @@ inline void skills () {
 
     moveTurn = true;
 
-    desX = 60;
-    desY = -55;
+    desX = 45;
+    desY = -45;
     pros::delay(1200);
 
     // push middle 1
-    wingL.set_value(true);
-    wingR.set_value(true);
-
+    turnMulti = 2;
     moveTurn = false;
 
-    desOrientation = 150;
+    desOrientation = 130;
     pros::delay(500);
 
-    desOrientation = 170;
-    pros::delay(500);
+    wingL.set_value(true);
+    wingR.set_value(true);
+    pros::delay(200);
     
     moveTurn = true;
     
-    desX = 60;
-    desY = -105;
-    pros::delay(1500);
+    desX = 62;
+    desY = -115;
+    pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
-    desX = 80;
-    desY = -55;
-    pros::delay(1500);
+    turnMulti = 4;
 
-    // push middle 2
-    wingL.set_value(true);
-    wingR.set_value(true);
-
-    moveTurn = false;
-
-    desOrientation = 150;
-    pros::delay(500);
-
-    desOrientation = 190;
-    pros::delay(500);
-    
-    moveTurn = true;
-    
-    desX = 75;
-    desY = -105;
-    pros::delay(1500);
-
-    wingL.set_value(false);
-    wingR.set_value(false);
-
-    desX = 95;
-    desY = -55;
-    pros::delay(1500);
-
-    /*// push left side
-    desY = -85;
+    desX = 70;
+    desY = -45;
     pros::delay(1000);
 
     moveTurn = false;
+
+    desOrientation = 270;
+    pros::delay(500);
+
+    moveTurn = true;
+
+    desX = 110;
+    desY = -50;
+    pros::delay(1000);
+
+    // push middle 2
+    turnMulti = 2;
+    moveTurn = false;
+
+    desOrientation = 220;
+    pros::delay(500);
+
+    wingL.set_value(true);
+    wingR.set_value(true);
+    pros::delay(200);
+    
+    moveTurn = true;
+    
+    desX = 85;
+    desY = -115;
+    pros::delay(1200);
+
+    wingL.set_value(false);
+    wingR.set_value(false);
+
+    // push middle 3
+    desX = 75;
+    desY = -45;
+    pros::delay(1500);
+
+    moveTurn = false;
+
+    desOrientation = 190;
+    pros::delay(500);
+
+    wingL.set_value(true);
+    wingR.set_value(true);
+    pros::delay(200);
+    
+    moveTurn = true;
+    
+    desX = 70;
+    desY = -115;
+    pros::delay(1200);
+
+    wingL.set_value(false);
+    wingR.set_value(false);
+
+
+    // push left side
+    turnMulti = 3;
+
+    desY = -60;
+    pros::delay(1000);
+
+    /*moveTurn = false;
 
     desOrientation = 230;
     pros::delay(800);
@@ -691,7 +746,7 @@ inline void netSideRush() {
     pros::delay(1200);
 
     desX = 6;
-    desY = .5;
+    desY = 6.5;
     pros::delay(1200);
 
     moveTurn = false;
