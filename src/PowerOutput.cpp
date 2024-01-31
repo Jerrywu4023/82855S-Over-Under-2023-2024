@@ -26,7 +26,7 @@ inline void PowerOutput () {
             }
         }
 
-        pros::lcd::print(2, "distance: %f", distance);
+        pros::lcd::print(7, "distance: %f", desDrive);
         pros::lcd::print(6, "desTurn: %f", desTurn);
 
         pros::delay(5);

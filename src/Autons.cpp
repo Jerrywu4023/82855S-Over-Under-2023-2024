@@ -2,17 +2,19 @@
 
 inline int autonNum;
 
-inline void loadSideQ () {
+inline void matchloadAvoid () {
     // push alliance triball to opponent goal
+    turnMulti = 5;
+
     desX = 22;
     desY = -40;
     pros::delay(1200);
 
     // drive back to match loader
-    turnMulti = 3;
+    turnMulti = 2;
 
-    desX = 8;
-    desY = -10;
+    desX = 5;
+    desY = 0;
     pros::delay(1200);
 
     // turn to match loader
@@ -23,82 +25,37 @@ inline void loadSideQ () {
 
     // open wall
     wingR.set_value(true);
+    pros::delay(300);
 
     // push triball out matchloader
-    moveTurn = true;
 
-    for (int i = 0; i < 5; i++) {
-        desX -= 3;
-        desY += 3;
-        pros::delay(300);
-    }
-
-    desX -= 40;
-
-    pros::delay(1000);
-
-    wingR.set_value(false);
-
-    desX += 55;
-
-    pros::delay(1500);
-
-    // turn to middle of opponent offense zone
-    moveTurn = false;
-
-    desOrientation = 40;
+    desOrientation = 240;
     pros::delay(500);
 
-    // drive to middle of opponent offense zone
-    moveTurn = true;
-
-    desX = -10;
-    desY = -50;
-    pros::delay(1500);
-
-    // turn to pipe and open wall
-    moveTurn = false;
-
-    desOrientation = 270;
+    desOrientation = 290;
     pros::delay(800);
 
-    wingR.set_value(true);
-    wingL.set_value(true);
-
-    // push triballs over pipe
-    moveTurn = true;
-
-    desX -= 40;
-    pros::delay(1000);
-
-    wingL.set_value(false);
     wingR.set_value(false);
 
-    // drive back
-    desX += 30;
-    pros::delay(800);
-
-    // turn to elevation pole
-    moveTurn = false;
-
-    desOrientation = 0;
-    pros::delay(800);
-
-    // touch elevation pole
     moveTurn = true;
 
-    desX = -30;
-    desY = -15;
-    pros::delay(1000);
+    intakeA.move(-127);
 
-    desX = -50;
-    pros::delay(1000);
+    desX -= 43;
+    desY = 0;
+    pros::delay(1500);
 
-    // touch pole
+    wingL.set_value(true);
+
     moveTurn = false;
 
-    desOrientation = 300;
-    pros::delay(1000);
+    desOrientation = 290;
+    pros::delay(800);
+
+    auton = false;
+
+    moveL(0);
+    moveR(0);
 }
 
 // ##############################################################################################
@@ -232,30 +189,30 @@ inline void skills () {
     intakeA.move(-127);
 
     desX = 40;
-    desY = 20;
+    desY = 25;
     pros::delay(1000);
 
     turnMulti = 3;
     intakeA.move(0);
 
     // move to matchlaod
-    desX = -7;
-    desY = 13;
-    pros::delay(800);
+    desX = 5;
+    desY = 15;
+    pros::delay(500);
 
     wingL.set_value(true);
 
     // turn to shoot
     moveTurn = false;
 
-    desOrientation = 335;
+    desOrientation = 343;
 
     pros::delay(500);
 
     // matchload
     cataA.move(127);
 
-    pros::delay(2000);
+    pros::delay(30000);
 
     wingL.set_value(false);
 
@@ -264,12 +221,19 @@ inline void skills () {
     imu1Increase = 0;
 
     // move across field
-    desOrientation = 10;
+    desOrientation = 40;
+    while(cataPos.get_position() > 4000) {
+        cataA.move(127);
+        pros::delay(20);
+    }
+
+    cataA.move(0);
+
     pros::delay(500);
 
     moveTurn = true;
 
-    desX = 0;
+    desX = -4;
     desY = -15;
 
     for (int i = 0; i < 3; i++) {
@@ -285,21 +249,21 @@ inline void skills () {
 
     moveTurn = false;
 
-    desOrientation = 345;
+    desOrientation = 350;
     pros::delay(500);
 
     moveTurn = true;
 
-    desX = 45;
-    desY = -110;
+    desX = 60;
+    desY = -115;
     pros::delay(1200);
 
     desX = 0;
     desY = -90;
     pros::delay(1000);
 
-    desX = 50;
-    desY = -110;
+    desX = 65;
+    desY = -120;
     pros::delay(1000);
 
     wingL.set_value(false);
@@ -311,12 +275,12 @@ inline void skills () {
 
     desX = 10;
     desY = -70;
-    pros::delay(500);
+    pros::delay(300);
 
     moveTurn = false;
 
-    desOrientation = 250;
-    pros::delay(500);
+    desOrientation = 70;
+    pros::delay(700);
 
     moveTurn = true;
 
@@ -325,7 +289,7 @@ inline void skills () {
     pros::delay(1200);
 
     // push middle 1
-    turnMulti = 2;
+    turnMulti = 2.5;
     moveTurn = false;
 
     desOrientation = 130;
@@ -337,8 +301,8 @@ inline void skills () {
     
     moveTurn = true;
     
-    desX = 62;
-    desY = -115;
+    desX = 57;
+    desY = -120;
     pros::delay(1200);
 
     wingL.set_value(false);
@@ -347,22 +311,22 @@ inline void skills () {
     turnMulti = 4;
 
     desX = 70;
-    desY = -45;
-    pros::delay(1000);
+    desY = -35;
+    pros::delay(1300);
 
     moveTurn = false;
 
-    desOrientation = 270;
+    desOrientation = 90;
     pros::delay(500);
 
     moveTurn = true;
 
-    desX = 110;
-    desY = -50;
+    desX = 100;
+    desY = -45;
     pros::delay(1000);
 
     // push middle 2
-    turnMulti = 2;
+    turnMulti = 2.5;
     moveTurn = false;
 
     desOrientation = 220;
@@ -374,17 +338,17 @@ inline void skills () {
     
     moveTurn = true;
     
-    desX = 85;
-    desY = -115;
+    desX = 63;
+    desY = -110;
     pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
     // push middle 3
-    desX = 75;
+    desX = 60;
     desY = -45;
-    pros::delay(1500);
+    pros::delay(1000);
 
     moveTurn = false;
 
@@ -397,41 +361,60 @@ inline void skills () {
     
     moveTurn = true;
     
-    desX = 70;
+    desX = 55;
     desY = -115;
     pros::delay(1200);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
-
     // push left side
     turnMulti = 3;
 
-    desY = -60;
+    desY = -40;
     pros::delay(1000);
 
-    /*moveTurn = false;
+    moveTurn = false;
 
-    desOrientation = 230;
+    desOrientation = 300;
     pros::delay(800);
-
-    wingL.set_value(true);
-    wingR.set_value(true);
 
     moveTurn = true;
 
-    desX = 75;
-    desY = -105;
+    wingL.set_value(true);
+
+    desX = 130;
+    desY = -85;
     pros::delay(1500);
 
-    wingL.set_value(false);
-    wingR.set_value(false);
+    moveTurn = false;
 
-    desX = 90;
-    desY = -90;
-    pros::delay(1000);*/
+    wingL.set_value(false);
+
+    desOrientation = 345;
+    pros::delay(800);
+
+    moveTurn = true;
+
+    desX = 70;
+    desY = -120;
+    pros::delay(1000);
+
+    desX = 130;
+    desY = -100;
+    pros::delay(800);
+
+    desX = 70;
+    desY = -120;
+    pros::delay(1000);
+
+    desX = 110;
+    desY = -80;
+    pros::delay(600);
 }
+
+// ##############################################################################################
+// ##############################################################################################
 
 inline void test() {
     //moveTurn = false;
@@ -460,17 +443,17 @@ inline void test() {
     pros::delay(1000000);
 }
 
+// ##############################################################################################
+// ##############################################################################################
+
 inline void netSideFull() {
     turnMulti = 2.5;
 
-    globalX = -35;
-    globalY = -8;
+    intakeA.move(-127); // unhook
 
-    intakeA.move(-127);
-
-    desX = -50;
-    desY = -8;
-    pros::delay(300);
+    desX = -48;
+    desY = -8.2;
+    pros::delay(200);
 
     /*// turn to elevation and intake triball
 
@@ -481,38 +464,29 @@ inline void netSideFull() {
 
     intakeA.move(127);
 
-    pros::delay(300);
+    pros::delay(500);
 
     moveTurn = true;
 
     // go to middle of field
 
     // go back to starting pos and release triball
-    desX = -10;
-    desY = -5;
-    pros::delay(1000);
+    desX = 7;
+    desY = 5;
+    pros::delay(1200);
 
     moveTurn = false;
 
-    desOrientation = 50;
-    pros::delay(800);
+    desOrientation = 300;
+    pros::delay(400);
+
+    desOrientation = 60;
+    pros::delay(400);
 
     intakeA.move(-127);
-    pros::delay(200);
-
-    moveTurn = true;
-
-    desX = -7;
-    desY = 4;
-    pros::delay(500);
-
-    moveTurn = false;
-
-    desOrientation = 50;
-    pros::delay(300);
+    pros::delay(100);
 
     // take matchload triball out
-    intakeA.move(-127);
     wingR.set_value(true);
 
     pros::delay(300);
@@ -526,19 +500,14 @@ inline void netSideFull() {
     moveTurn = false;
     
     desOrientation = 250;
-    pros::delay(1000);
+    pros::delay(800);
 
     moveTurn = true;
     
     // push elevation pole, preload, matchload triaball in goal
-    desX = 25;
+    desX = 18;
     desY = 40;
-
-    pros::delay(500);
-
-    wingR.set_value(false);
-
-    pros::delay(500);
+    pros::delay(1000);
 
     // move to center of field
     desX = 0;
@@ -548,8 +517,8 @@ inline void netSideFull() {
     // turn to right middle triball and intake
     moveTurn = false;
 
-    desOrientation = 330;
-    pros::delay(500);
+    desOrientation = 300;
+    pros::delay(700);
 
     intakeA.move(127);
 
@@ -557,13 +526,13 @@ inline void netSideFull() {
 
     desX = -42;
     desY = 30;
-    pros::delay(1500);
+    pros::delay(1300);
 
     // spit out triball
     moveTurn = false;
 
     desOrientation = 60;
-    pros::delay(1000);
+    pros::delay(500);
 
     intakeA.move(-127);
 
@@ -571,30 +540,25 @@ inline void netSideFull() {
 
     // turn to middle back tribal and intake
     desOrientation = 345;
-    pros::delay(500);
+    pros::delay(600);
 
     intakeA.move(127);
 
     moveTurn = true;
 
-    desX = -38;
+    desX = -40;
     desY = 55;
-
-    pros::delay(1200);
+    pros::delay(900);
 
     // spit out triball
     moveTurn = false;
 
     desOrientation = 90;
-    pros::delay(500);
+    pros::delay(700);
 
     intakeA.move(-127);
 
-    pros::delay(300);
-
     // push 3 middle triball across field
-    intakeA.move(0);
-
     wingL.set_value(true);
     wingR.set_value(true);
 
@@ -602,29 +566,35 @@ inline void netSideFull() {
 
     moveTurn = true;
 
-    desX = 25;
-    pros::delay(1200);
-
-    desX = -10;
-    pros::delay(1000);
-
-    /*// touch pole
-    desX = -60;
-    desY = 25;
-    pros::delay(1000);
+    desX = 20;
+    desY = 48;
+    pros::delay(800);
 
     wingL.set_value(false);
-    wingR.set_value(false);
 
+    desX = -20;
+    pros::delay(500);
+
+    // touch pole
     moveTurn = false;
     
-    desOrientation = 180;
-    pros::delay(800);
-    
+    desOrientation = 220;
+    pros::delay(700);
+
     moveTurn = true;
+
+    desX = -50;
+    desY = 15;
+    pros::delay(800);
+
     desY -= 50;
-    desX -= 10;
-    pros::delay(1000);*/
+    desX -= 5;
+    pros::delay(500);
+
+    auton = false;
+
+    moveL(0);
+    moveR(0);
 }
 
 // ##############################################################################################
@@ -656,7 +626,7 @@ inline void netSideRush() {
     wingR.set_value(true);
 
     // push (1) and centre right (2)
-    turnMulti = 2;
+    turnMulti = 3;
     moveTurn = true;
 
     desX = 20;
@@ -672,21 +642,21 @@ inline void netSideRush() {
     intakeA.move(0);
 
     desX = -50;
-    pros::delay(200);
+    pros::delay(300);
 
     moveTurn = false;
 
-    desOrientation = 200;
-    pros::delay(800);
+    desOrientation = 240;
+    pros::delay(700);
 
     // intake (3)
     intakeA.move(127);
 
     moveTurn = true;
 
-    desX = -50;
-    desY = 16;
-    pros::delay(950);
+    desX = -46;
+    desY = 20;
+    pros::delay(900);
 
     /*// turn to goal
     moveTurn = false;
@@ -706,8 +676,8 @@ inline void netSideRush() {
 
     // extra
     moveTurn = false;
-    desOrientation = 300;
-    pros::delay(500);
+    desOrientation = 290;
+    pros::delay(700);
     moveTurn = true;
 
     // move back to start
@@ -721,39 +691,39 @@ inline void netSideRush() {
 
     moveTurn = true;*/
 
-    desX = -5;
-    desY = -13;
-    pros::delay(1300);
+    desX = -3;
+    desY = -15;
+    pros::delay(1100);
 
     // release (3)
     moveTurn = false;
 
     desOrientation = 60;
-    pros::delay(500);
+    pros::delay(300);
 
     intakeA.move(-127);
     pros::delay(300);
 
     // move to elevation (4)
     desOrientation = 250;
-    pros::delay(800);
+    pros::delay(700);
 
     intakeA.move(127);
 
     moveTurn = true;
-    desX = -50;
-    desY = -10;
-    pros::delay(1200);
+    desX = -45;
+    desY = -8;
+    pros::delay(1000);
 
-    desX = 6;
-    desY = 6.5;
-    pros::delay(1200);
+    desX = 12.5;
+    desY = 2.5;
+    pros::delay(1300);
 
     moveTurn = false;
 
     // return and release (4)
     desOrientation = 330;
-    pros::delay(400);
+    pros::delay(200);
 
     desOrientation = 60;
     pros::delay(700);
@@ -763,15 +733,14 @@ inline void netSideRush() {
 
     wingR.set_value(true);
 
-    pros::delay(300);
+    pros::delay(200);
 
     desOrientation = 350;
     pros::delay(300);
 
     // push (4) (5) prelaod
-    
     desOrientation = 220;
-    pros::delay(500);
+    pros::delay(600);
 
     wingR.set_value(false);
 
@@ -785,16 +754,18 @@ inline void netSideRush() {
 
     movePL(127);
     movePR(127);
-    pros::delay(300);
+    pros::delay(500);
 
     movePL(-127);
     movePR(-40);
-    pros::delay(1000);
+    pros::delay(800);
 
     movePL(127);
     movePR(127);
     pros::delay(300);
 
+    movePL(0);
+    movePR(0);
 }
 
 // ##############################################################################################
@@ -814,13 +785,12 @@ inline void matchloadRush() {
     pros::delay(500);
     intakeA.move(127);
     wingL.set_value(false);
-    pros::delay(1300);
+    pros::delay(1000);
 
     // move back to starting position
     desX = -5;
     desY = 5;
-    pros::delay(500);
-    pros::delay(1000);
+    pros::delay(1200);
 
     // turn to goal and push preload
     moveTurn = false;
@@ -833,7 +803,7 @@ inline void matchloadRush() {
 
     desX = -20;
     desY = 10;
-    pros::delay(1000);
+    pros::delay(800);
 
     desX = -32;
     desY = 35;
@@ -842,10 +812,10 @@ inline void matchloadRush() {
     // take out matchload
     desX = -20;
     desY = 5;
-    pros::delay(1000);
+    pros::delay(500);
 
     desX = -14;
-    desY = 0;
+    desY = -3;
     pros::delay(1000);
 
     moveTurn = false;
@@ -857,8 +827,8 @@ inline void matchloadRush() {
 
     desOrientation = 30;
     pros::delay(300);
-    desOrientation = 110;
-    pros::delay(1500);
+    desOrientation = 120;
+    pros::delay(1000);
 
     moveTurn = true;
 
@@ -868,7 +838,7 @@ inline void matchloadRush() {
 
     // push triballs and touch elevation pole
     desX = 26;
-    desY = 0;
+    desY = -5;
     pros::delay(500);
     intakeA.move(-127);
     pros::delay(2000);

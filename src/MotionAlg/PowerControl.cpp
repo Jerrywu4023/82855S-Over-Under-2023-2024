@@ -21,6 +21,8 @@ inline double distance, angle;
 
 inline double turnMulti = 3;
 
+inline double turnRestrict;
+
 
 /**
  * @brief coordMove function
@@ -34,8 +36,12 @@ inline void coordMove() {
 			Ydiff = desY - globalY; // distance needed to travel in y direction
 
             // get distance and angle
-			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.4; // distance from desired locaion
+			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.6; // distance from desired locaion
 			angle = atan2(Xdiff, Ydiff) * 180 / pi - heading; // get direction of deired location according to robot heading
+
+            turnRestrict = fabs(distance) / 20;
+
+            if (turnRestrict > 1) turnRestrict = 1;
 
             // keep angle within [-180, 180]
 			while (angle > 180) angle -= 360; // keep angle less than 180
@@ -57,6 +63,8 @@ inline void coordMove() {
 				desDrive = -distance; // drive rev
 				desTurn = (angle - 180) * turnMulti; // move in angle so back pointing to target
 			}
+
+            desTurn *= turnRestrict;
         }
 
         pros::delay(5); // delay

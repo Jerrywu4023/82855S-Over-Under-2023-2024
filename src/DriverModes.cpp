@@ -10,8 +10,11 @@ inline bool matchloadCataState = false; // states: false = off, true = on
 inline bool cataButton;
 inline bool cataToggle;
 inline bool prevCataToggle = false;
-inline bool autoLower = false;
+inline bool autoLower1 = false;
+inline bool autoLower2 = false; // a slower cata auto lower
 inline bool cataReset;
+inline bool prevReset = false;
+inline bool cataDisable = false;
 
 inline bool intakeButton;
 inline bool intakeReverse;
@@ -62,7 +65,8 @@ inline void overUnder() {
     else intakeA.move(0);
 
     // Cata move
-    if (matchloadCataState || cataButton || autoLower) cataA.move(127);
+    if (matchloadCataState || cataButton || autoLower1) cataA.move(127);
+    else if (autoLower2) cataA.move_velocity(20);
     else cataA.move(0);
 
     /* Auto lower cata ###
@@ -75,8 +79,13 @@ inline void overUnder() {
     */ 
     //if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 1200) autoLower = false; // set auto to false, 100000 = disabled
-    else autoLower = true;
+    if (cataPos.get_position() < 4000 || cataDisable) autoLower1 = false; // set auto to false, 100000 = disabled
+    else autoLower1 = true;
+
+    if (cataPos.get_position() < 4000 || cataDisable) autoLower2 = false; // set auto to false, 100000 = disabled
+    else if (cataPos.get_position() > 4000) autoLower2 = true;
+
+    if (!prevReset && cataReset) cataDisable = !cataDisable;
 
     /* Cata and blocker state control ###
     Cata/blocker state switches the instant button pressed

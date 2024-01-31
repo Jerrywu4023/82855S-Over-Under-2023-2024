@@ -20,7 +20,7 @@ inline pros::Motor driveMotors[] = {LF, LM, LB, RF, RM, RB};
 
 // Cata - Intake
 inline pros::Motor cataA(20, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
-inline pros::Motor intakeA(6, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
+inline pros::Motor intakeA(6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 
 
 // Pneumatics ###
@@ -38,4 +38,4 @@ inline pros::ADIDigitalOut hang({{21, 'C'}});
 // Sensors ###
 inline pros::Rotation cataPos(11);
 
-inline pros::ADIPotentiometer autonSelect({{21, 'H'}});
+inline pros::ADIPotentiometer autonSelect({{21, 'H'}, pros::E_ADI_POT_V2});
