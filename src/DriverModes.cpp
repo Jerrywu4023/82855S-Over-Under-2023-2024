@@ -22,6 +22,7 @@ inline bool endgameButtonA;
 inline bool endgameButtonB;
 
 inline bool wingROn, wingLOn;
+inline bool prevWingL = false, prevWingR = false, wingLState = false, wingRState = false;;
 
 inline bool blockerSwitch = false;
 inline bool prevBlocker = false;
@@ -37,7 +38,7 @@ inline void overUnder() {
     // Get controller
     // joysticks
     drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1;
+    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1.5;
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
@@ -105,6 +106,15 @@ inline void overUnder() {
     prevBlocker = blockerSwitch;
 
     // Wings
+    if (wingLOn && !prevWingL) wingLState = !wingLState;
+    if (wingROn && !prevWingR) wingRState = !wingRState;
+
+    prevWingL = wingLOn;
+    prevWingR = wingROn;
+
+    //wingL.set_value(wingLState);
+    //wingR.set_value(wingRState);
+
     wingL.set_value(wingLOn);
     wingR.set_value(wingROn);
 

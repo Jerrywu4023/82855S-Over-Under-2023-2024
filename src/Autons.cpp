@@ -196,9 +196,9 @@ inline void skills () {
     intakeA.move(0);
 
     // move to matchlaod
-    desX = 5;
+    desX = 3;
     desY = 15;
-    pros::delay(500);
+    pros::delay(600);
 
     wingL.set_value(true);
 
@@ -212,7 +212,7 @@ inline void skills () {
     // matchload
     cataA.move(127);
 
-    pros::delay(30000);
+    pros::delay(33000);
 
     wingL.set_value(false);
 
@@ -229,7 +229,7 @@ inline void skills () {
 
     cataA.move(0);
 
-    pros::delay(500);
+    pros::delay(300);
 
     moveTurn = true;
 
@@ -249,75 +249,75 @@ inline void skills () {
 
     moveTurn = false;
 
-    desOrientation = 350;
-    pros::delay(500);
+    desOrientation = 330;
+    pros::delay(700);
 
     moveTurn = true;
 
     desX = 60;
-    desY = -115;
+    desY = -120;
     pros::delay(1200);
 
-    desX = 0;
+    /*desX = 0;
     desY = -90;
     pros::delay(1000);
 
     desX = 65;
-    desY = -120;
-    pros::delay(1000);
+    desY = -125;
+    pros::delay(1000);*/
 
     wingL.set_value(false);
     wingR.set_value(false);
 
-    desX = 0;
+    desX = 10;
     desY = -80;
     pros::delay(500);
 
-    desX = 10;
+    desX = 15;
     desY = -70;
     pros::delay(300);
 
     moveTurn = false;
 
-    desOrientation = 70;
+    desOrientation = 50;
     pros::delay(700);
 
     moveTurn = true;
 
-    desX = 40;
-    desY = -45;
+    desX = 50;
+    desY = -35;
     pros::delay(1200);
 
     // push middle 1
     turnMulti = 2.5;
     moveTurn = false;
 
-    desOrientation = 120;
+    desOrientation = 160;
     pros::delay(500);
 
     wingL.set_value(true);
-    wingR.set_value(true);
+    wingR.set_value(false);
     pros::delay(200);
     
     moveTurn = true;
     
-    desX = 50;
+    desX = 47;
     desY = -120;
-    pros::delay(1200);
+    pros::delay(1300);
 
     wingL.set_value(false);
     wingR.set_value(false);
 
     turnMulti = 4;
 
-    desX = 65;
-    desY = -35;
-    pros::delay(1300);
+    desX = 45;
+    desY = -30;
+    pros::delay(1000);
 
     moveTurn = false;
 
     desOrientation = 90;
-    pros::delay(500);
+    pros::delay(800);
 
     moveTurn = true;
 
@@ -396,17 +396,9 @@ inline void skills () {
 
     moveTurn = true;
 
-    desX = 70;
-    desY = -120;
-    pros::delay(1000);
-
-    desX = 130;
-    desY = -100;
-    pros::delay(800);
-
-    desX = 70;
-    desY = -120;
-    pros::delay(1000);
+    desX = 65;
+    desY = -125;
+    pros::delay(1500);
 
     desX = 110;
     desY = -80;
@@ -869,9 +861,9 @@ inline void driverSkills () {
     intakeA.move(0);
 
     // move to matchlaod
-    desX = 5;
+    desX = 3;
     desY = 15;
-    pros::delay(500);
+    pros::delay(600);
 
     wingL.set_value(true);
 
@@ -885,7 +877,7 @@ inline void driverSkills () {
     // matchload
     cataA.move(127);
 
-    for (int i = 0; i < 60; i++) {
+    for (int i = 0; i < 66; i++) {
         if (abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) > 100) break;
         pros::delay(500);
     }
