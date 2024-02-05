@@ -135,6 +135,7 @@ void opcontrol() {
 		thetaReset = 3 * pi / 2;
 		autoStart();
 		driverSkills();
+		//skills();
 	}
 
 	// Variables
