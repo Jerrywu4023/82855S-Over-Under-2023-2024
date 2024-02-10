@@ -37,8 +37,8 @@ inline void odometry () {
 
         // Get absoulte orientation
         imuRot1 = imu1.get_rotation() * imu1Multi + imu1Increase;
-        imuRot2 = 0;
-        theta1 = thetaReset + ((imuRot1 * 2) * pi / 360);
+        imuRot2 = imu2.get_rotation() * imu2Multi;
+        theta1 = thetaReset + ((imuRot1 + imuRot1) * pi / 360);
         heading = theta1 * (180 / pi);
 
         // Get change in angle

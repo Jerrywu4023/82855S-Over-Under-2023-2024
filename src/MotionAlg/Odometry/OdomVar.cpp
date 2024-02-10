@@ -69,6 +69,6 @@ inline pros::Imu imu2(5);
 
 // imu error compensations
 inline double imu1Multi = 1.00598;
-inline double imu2Multi = 1;
+inline double imu2Multi = 1.00897;
 
 inline double imu1Increase = 0;

@@ -20,6 +20,7 @@ inline bool intakeButton;
 inline bool intakeReverse;
 inline bool endgameButtonA;
 inline bool endgameButtonB;
+inline bool endgameButtonC;
 
 inline bool wingROn, wingLOn;
 inline bool prevWingL = false, prevWingR = false, wingLState = false, wingRState = false;;
@@ -55,6 +56,8 @@ inline void overUnder() {
 
     endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    endgameButtonC = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+
 
     // Drive - move drive motors
     movePL(drivePower - turnPower);
@@ -126,5 +129,10 @@ inline void overUnder() {
         blockerState = false;
         hang.set_value(true);
         //passiveEndgame.set_value(true);
+    }
+
+    if (endgameButtonA && endgameButtonC) {
+        blockerState = false;
+        passiveEndgame.set_value(true);
     }
 }

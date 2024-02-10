@@ -1,14 +1,6 @@
 #include "Autons.cpp"
 #include "pros/misc.h"
 
-void autoStart() {
-	pros::Task Odom(odometry);
-	pros::Task move(coordMove);
-	pros::Task turning(turn);
-	pros::Task out(PowerOutput);
-	pros::delay(10);
-}
-
 void initialize() {
 	pros::lcd::initialize();
 	
@@ -58,7 +50,7 @@ void initialize() {
 	}
 	else if (autonNum < size * 5) {
 		autonNum = 5;
-		pros::lcd::print(1, "net awp");
+		pros::lcd::print(1, "matchload elim");
 	}
 	else if (autonNum < size * 6) {
 		autonNum = 6;
@@ -108,6 +100,7 @@ void autonomous() {
 			break;
 		case 5:
 			autoStart();
+			matchloadRushElim();
 			break;
 		case 6:
 			thetaReset = 3 * pi / 2;
