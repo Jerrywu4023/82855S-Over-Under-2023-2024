@@ -8,7 +8,7 @@ inline bool enableOdom = true;
 
 // tracking wheel dist to center
 inline double Sl = 0.25;
-inline double Ss = 1.6;
+inline double Ss = 2.2;
 
 // tracking wheel diameters (inches)
 inline double wheelL = 2.75;

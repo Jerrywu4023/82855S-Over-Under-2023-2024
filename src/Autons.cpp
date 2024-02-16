@@ -470,20 +470,11 @@ inline void netSideFull() {
     desY = -8.2;
     pros::delay(200);
 
-    /*// turn to elevation and intake triball
-
-    moveTurn = false;
-
-    desOrientation = 270;
-    pros::delay(500);*/
-
     intakeA.move(127);
 
     pros::delay(500);
 
     moveTurn = true;
-
-    // go to middle of field
 
     // go back to starting pos and release triball
     desX = 7;
@@ -596,15 +587,15 @@ inline void netSideFull() {
     desOrientation = 350;
     pros::delay(1700);
 
-    /*moveTurn = true;
+    moveTurn = true;
 
     desX = -35;
     desY = 15;
     pros::delay(600);
 
-    desY -= 30;
+    desY -= 40;
     desX -= 5;
-    pros::delay(1000);*/
+    pros::delay(1000);
 
     auton = false;
 
@@ -634,7 +625,7 @@ inline void netSideRush() {
     // turn to goal
     moveTurn = false;
 
-    desOrientation = 90;
+    desOrientation = 85;
     pros::delay(700);
 
     wingL.set_value(true);
@@ -645,7 +636,7 @@ inline void netSideRush() {
     moveTurn = true;
 
     desX = 20;
-    desY = 40;
+    desY = 43;
     pros::delay(300);
     intakeA.move(-127);
     pros::delay(700);
@@ -706,12 +697,13 @@ inline void netSideRush() {
 
     moveTurn = true;*/
 
-    desX = -2;
-    desY = -15;
-    pros::delay(1100);
+    desX = -1;
+    desY = 0;
+    pros::delay(800);
 
-    desX = -10;
-    pros::delay(400);
+    desX = -8;
+    desY = -10;
+    pros::delay(300);
 
     // release (3)
     intakeA.move(-127);
@@ -720,15 +712,18 @@ inline void netSideRush() {
     moveTurn = false;
 
     // move to elevation (4)
+    desOrientation = 0;
+    pros::delay(200);
+
     desOrientation = 250;
-    pros::delay(700);
+    pros::delay(600);
 
     intakeA.move(127);
 
     moveTurn = true;
     desX = -45;
     desY = -8;
-    pros::delay(1000);
+    pros::delay(1050);
 
     turnMulti += 0.3;
 

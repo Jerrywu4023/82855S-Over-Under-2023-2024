@@ -36,10 +36,10 @@ inline void coordMove() {
 			Ydiff = desY - globalY; // distance needed to travel in y direction
 
             // get distance and angle
-			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.6; // distance from desired locaion
+			distance = sqrt(pow(Xdiff, 2) + pow(Ydiff, 2)) * 2.4; // distance from desired locaion
 			angle = atan2(Xdiff, Ydiff) * 180 / pi - heading; // get direction of deired location according to robot heading
 
-            turnRestrict = fabs(distance) / 20;
+            turnRestrict = fabs(distance) / 30;
 
             if (turnRestrict > 1) turnRestrict = 1;
 
