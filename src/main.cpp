@@ -62,11 +62,11 @@ void initialize() {
 	}
 	else if (autonNum < size * 8) {
 		autonNum = 8;
-		pros::lcd::print(1, "disabled");
+		pros::lcd::print(1, "net elim");
 	}
 	else {
 		autonNum = 0;
-		pros::lcd::print(1, "aaa");
+		pros::lcd::print(1, "disabled");
 	}
 
 	pros::delay(1000);
@@ -112,10 +112,14 @@ void autonomous() {
 			test();
 			break;
 		case 8:
+			globalX = -32;
+			globalY = -8;
+			thetaReset = 3 * pi / 2;
 			autoStart();
-			auton = false;
+			netSideElim();
 			break;
 		default: 
+			auton = false;
 			break;
 	}
 }

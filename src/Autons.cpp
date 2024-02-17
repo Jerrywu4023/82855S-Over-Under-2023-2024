@@ -552,7 +552,7 @@ inline void netSideFull() {
 
     moveTurn = true;
 
-    desX = -40;
+    desX = -38;
     desY = 55;
     pros::delay(900);
 
@@ -577,19 +577,20 @@ inline void netSideFull() {
     pros::delay(800);
 
     wingL.set_value(false);
+    wingR.set_value(false);
 
-    desX = -20;
+    desX = -30;
     pros::delay(500);
 
     // touch pole
     moveTurn = false;
     
-    desOrientation = 350;
-    pros::delay(1700);
+    desOrientation = 245;
+    pros::delay(600);
 
     moveTurn = true;
 
-    desX = -35;
+    desX = -45;
     desY = 15;
     pros::delay(600);
 
@@ -994,4 +995,132 @@ inline void matchloadRushElim() {
     auton = false;
     moveL(0);
     moveR(0);
+}
+
+inline void netSideElim() {
+    turnMulti = 2.5;
+
+    intakeA.move(-127); // unhook
+
+    desX = -48;
+    desY = -8.2;
+    pros::delay(200);
+
+    intakeA.move(127);
+
+    pros::delay(500);
+
+    moveTurn = true;
+
+    // go back to starting pos and release triball
+    desX = 7;
+    desY = 7;
+    pros::delay(1200);
+
+    moveTurn = false;
+
+    desOrientation = 300;
+    pros::delay(400);
+
+    desOrientation = 60;
+    pros::delay(600);
+
+    intakeA.move(-127);
+    pros::delay(100);
+
+    // take matchload triball out
+    wingR.set_value(true);
+
+    pros::delay(300);
+
+    desOrientation = 0;
+    pros::delay(500);
+
+    wingR.set_value(false);
+
+    // push (4) (5) prelaod
+    moveTurn = false;
+    
+    desOrientation = 250;
+    pros::delay(800);
+
+    moveTurn = true;
+    
+    // push elevation pole, preload, matchload triaball in goal
+    desX = 20;
+    desY = 45;
+    pros::delay(1000);
+
+    // move to center of field
+    desX = 0;
+    desY = 0;
+    pros::delay(800);
+
+    // turn to right middle triball and intake
+    moveTurn = false;
+
+    desOrientation = 300;
+    pros::delay(700);
+
+    intakeA.move(127);
+
+    moveTurn = true;
+
+    desX = -42;
+    desY = 30;
+    pros::delay(1300);
+
+    // spit out triball
+    moveTurn = false;
+
+    desOrientation = 60;
+    pros::delay(500);
+
+    intakeA.move(-127);
+
+    pros::delay(500);
+
+    // turn to middle back tribal and intake
+    desOrientation = 345;
+    pros::delay(600);
+
+    intakeA.move(127);
+
+    moveTurn = true;
+
+    desX = -40;
+    desY = 55;
+    pros::delay(900);
+
+    // spit out triball
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(700);
+
+    intakeA.move(-127);
+
+    // push 3 middle triball across field
+    wingL.set_value(true);
+    wingR.set_value(true);
+
+    pros::delay(200);
+
+    moveTurn = true;
+
+    desX = 20;
+    desY = 48;
+    pros::delay(800);
+
+    wingL.set_value(false);
+    wingR.set_value(false);
+
+    desX = -20;
+    pros::delay(500);
+
+    // touch pole
+    moveTurn = false;
+    
+    desOrientation = 290;
+    pros::delay(1700);
 }

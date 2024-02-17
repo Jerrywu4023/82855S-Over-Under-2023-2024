@@ -29,6 +29,8 @@ inline bool blockerSwitch = false;
 inline bool prevBlocker = false;
 inline bool blockerState = false;
 
+inline int resetPos = 21000;
+
 
 /**
  * @brief over under match load styled
@@ -82,7 +84,7 @@ inline void overUnder() {
     */ 
     //if (cataReset) autoLower = true; // set auto to true
 
-    if (cataPos.get_position() < 21000 || cataDisable) autoLower1 = false; // set auto to false, 100000 = disabled
+    if (cataPos.get_position() < resetPos || cataDisable) autoLower1 = false; // set auto to false, 100000 = disabled
     else autoLower1 = true;
 
     if (!prevReset && cataReset) cataDisable = !cataDisable;
@@ -101,6 +103,7 @@ inline void overUnder() {
     if (blockerSwitch && !prevBlocker) {
         blockerState = ! blockerState;
         hang.set_value(false); // releases accidental hang
+        resetPos = 21000;
     }
     prevBlocker = blockerSwitch;
 
@@ -125,6 +128,8 @@ inline void overUnder() {
         blockerState = false;
         hang.set_value(true);
         //passiveEndgame.set_value(true);
+        //cataDisable = false;
+        //resetPos = 19500;
     }
 
     if (endgameButtonA && endgameButtonC) {
