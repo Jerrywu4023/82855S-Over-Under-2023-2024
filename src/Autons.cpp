@@ -228,6 +228,8 @@ inline void skills () {
         pros::delay(2000);
     }
 
+    pros::delay(500);
+
     //cataA.move(0);
 
     imu1.reset();
@@ -279,6 +281,7 @@ inline void skills () {
     pros::delay(700);
 
     moveTurn = true;
+    intakeA.move(-127);
 
     desX = 70;
     desY = -125;
@@ -295,18 +298,15 @@ inline void skills () {
     wingL.set_value(false);
     wingR.set_value(false);
 
-    desX = 15;
-    desY = -70;
-    pros::delay(400);
-
     desX = 20;
     desY = -60;
-    pros::delay(300);
+    pros::delay(500);
 
     moveTurn = false;
+    intakeA.move(0);
 
-    desOrientation = 190;
-    pros::delay(700);
+    desOrientation = 200;
+    pros::delay(300);
 
     moveTurn = true;
 
@@ -317,7 +317,7 @@ inline void skills () {
     // push middle 1
     moveTurn = false;
 
-    desOrientation = 175;
+    desOrientation = 172;
     pros::delay(500);
 
     wingL.set_value(true);
@@ -366,7 +366,7 @@ inline void skills () {
     moveTurn = true;
     intakeA.move(-127);
     
-    desX = 45; // 45
+    desX = 50; // 45
     desY = -115;
     pros::delay(1200);
 
@@ -390,7 +390,7 @@ inline void skills () {
 
     desX = 110;
     desY = -48;
-    pros::delay(800);
+    pros::delay(1000);
 
     wingL.set_value(true);
 
@@ -425,15 +425,17 @@ inline void skills () {
 
     moveTurn = false;
 
-    desOrientation = 330;
+    desOrientation = 130;
     pros::delay(800);
 
     moveTurn = true;
 
     //wingL.set_value(true);
 
+    intakeA.move(-127);
+
     desX = 125;
-    desY = -105;
+    desY = -95;
     pros::delay(1200);
 
     moveTurn = false;
@@ -445,9 +447,14 @@ inline void skills () {
 
     moveTurn = true;
 
+    intakeA.move(-127);
+
     desX = 40;
     desY = -125;
-    pros::delay(1200);
+    pros::delay(500);
+
+    intakeA.move(-127);
+    pros::delay(700);
 
     desX = 110;
     desY = -80;
