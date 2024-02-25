@@ -59,7 +59,7 @@ inline void overUnder() {
 
     endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    endgameButtonC = master.get_digital(pros::E_CONTROLLER_DIGITAL_UP);
+    endgameButtonC = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
     sideHangRelease = master.get_digital(pros::E_CONTROLLER_DIGITAL_Y);
 
     // Drive - move drive motors
@@ -133,7 +133,7 @@ inline void overUnder() {
         //resetPos = 19500;
     }
 
-    if (endgameButtonA && endgameButtonC) {
+    if (endgameButtonC) {
         blockerState = false;
         passiveEndgame.set_value(true);
     }

@@ -327,7 +327,7 @@ inline void skills () {
     moveTurn = true;
     intakeA.move(-127);
     
-    desX = 43;
+    desX = 40.5;
     desY = -120;
     pros::delay(1300);
 
@@ -348,7 +348,7 @@ inline void skills () {
 
     moveTurn = true;
 
-    desX = 68; // 130
+    desX = 65; // 130
     desY = -48;
     pros::delay(800); // 1100
 
@@ -432,7 +432,7 @@ inline void skills () {
 
     //wingL.set_value(true);
 
-    intakeA.move(-127);
+    intakeA.move(127);
 
     desX = 125;
     desY = -95;
@@ -442,7 +442,7 @@ inline void skills () {
 
     wingL.set_value(false);
 
-    desOrientation = 30;
+    desOrientation = 210;
     pros::delay(500);
 
     moveTurn = true;
@@ -454,7 +454,7 @@ inline void skills () {
     pros::delay(500);
 
     intakeA.move(-127);
-    pros::delay(700);
+    pros::delay(900);
 
     desX = 110;
     desY = -80;
@@ -906,6 +906,10 @@ inline void driverSkills () {
     turnMulti = 4;
     intakeA.move(-127);
 
+    // push alliance
+    turnMulti = 4;
+    intakeA.move(-127);
+
     desX = 40;
     desY = 25;
     pros::delay(1000);
@@ -916,7 +920,7 @@ inline void driverSkills () {
     // move to matchlaod
     desX = 9;
     desY = 13;
-    pros::delay(1200);
+    pros::delay(1000);
 
     wingL.set_value(true);
 
@@ -925,11 +929,16 @@ inline void driverSkills () {
 
     desOrientation = 342;
 
-    pros::delay(1000);
+    pros::delay(1500);
 
     // matchload
+    disableOdomControl = true;
+    enableOdom = false;
+    moveL(0);
+    moveR(0);
     cataA.move(127);
 
+    // matchload
     for (int i = 0; i < 66; i++) {
         if (abs(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)) > 100) break;
         pros::delay(500);
