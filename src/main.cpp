@@ -5,11 +5,12 @@ void initialize() {
 	pros::lcd::initialize();
 	
 	// reset pneumatics
-	passiveEndgame.set_value(false);
-	blocker.set_value(false);
 	hang.set_value(false);
+	hangUp.set_value(false);
 	wingL.set_value(false);
 	wingR.set_value(false);
+	wingBL.set_value(false);
+	wingBR.set_value(false);
 
 	// calibrate imu
 	imu1.reset();

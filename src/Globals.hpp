@@ -24,18 +24,22 @@ inline pros::Motor intakeA(15, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENC
 
 
 // Pneumatics ###
-// WALL
-inline pros::ADIDigitalOut wingL('B');
-inline pros::ADIDigitalOut wingR('A');
+// Front Wings
+inline pros::ADIDigitalOut wingL('G');
+inline pros::ADIDigitalOut wingR('H');
 
-// Endgame
-inline pros::ADIDigitalOut passiveEndgame('E');
+// Back Wings
+inline pros::ADIDigitalOut wingBL('E');
+inline pros::ADIDigitalOut wingBR('F');
 
-// Blocker
-inline pros::ADIDigitalOut blocker('D');
+// Hang
+inline pros::ADIDigitalOut hangUp('D');
 inline pros::ADIDigitalOut hang('C');
+
+// Odom Release
+inline pros::ADIDigitalOut odomRelease('B');
 
 // Sensors ###
 inline pros::Rotation cataPos(11);
 
-inline pros::ADIPotentiometer autonSelect( 'H', pros::E_ADI_POT_V2);
+inline pros::ADIPotentiometer autonSelect( 'A', pros::E_ADI_POT_V2);
