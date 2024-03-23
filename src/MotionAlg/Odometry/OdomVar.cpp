@@ -1,4 +1,5 @@
 #include "main.h"
+#include "pros/distance.hpp"
 
 // Variables ##############################
 inline double pi = 3.14159265359;
@@ -60,15 +61,18 @@ inline double heading; // robot heading in degrees (0 - 359)
 
 // Sensors
 // Rotation Sensor
-inline pros::Rotation SlEncode(16);
-inline pros::Rotation SsEncode(15, true);
+inline pros::Rotation SlEncode(21);
+inline pros::Rotation SsEncode(17, true);
 
 // Inertial Sensor
-inline pros::Imu imu1(10);
-inline pros::Imu imu2(5);
+inline pros::Imu imu1(1);
+inline pros::Imu imu2(11);
+
+// Distance Sensor
+inline pros::Distance pipeCheck(3);
 
 // imu error compensations
-inline double imu1Multi = 0.99668;
-inline double imu2Multi = 1.00897;
+inline double imu1Multi = 1;
+inline double imu2Multi = 1;
 
 inline double imu1Increase = 0;
