@@ -20,11 +20,12 @@ inline bool intakeButton;
 inline bool intakeReverse;
 inline bool endgameButtonA;
 inline bool endgameButtonB;
-inline bool endgameButtonC;
 inline bool sideHangRelease;
 
-inline bool wingROn, wingLOn;
-inline bool prevWingL = false, prevWingR = false, wingLState = false, wingRState = false;;
+inline int left;
+inline int right;
+
+inline bool wingROn, wingLOn, wingBLOn, wingBROn;
 
 inline bool blockerSwitch = false;
 inline bool prevBlocker = false;
@@ -42,7 +43,7 @@ inline void overUnder() {
     // Get controller
     // joysticks
     drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1.5;
+    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1.2;
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
@@ -55,16 +56,19 @@ inline void overUnder() {
     wingLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN);
     wingROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_B);
 
+    wingBLOn = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
+    wingBROn = master.get_digital(pros::E_CONTROLLER_DIGITAL_Y);
+
     blockerSwitch = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
 
     endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
-    endgameButtonC = master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT);
-    sideHangRelease = master.get_digital(pros::E_CONTROLLER_DIGITAL_Y);
 
     // Drive - move drive motors
-    movePL(drivePower - turnPower);
-    movePR(drivePower + turnPower);
+    left = drivePower - turnPower;
+    right = drivePower + turnPower;
+    movePL(left);
+    movePR(right);
 
     // Intake
     if (intakeButton) intakeA.move(127);
@@ -109,20 +113,14 @@ inline void overUnder() {
     prevBlocker = blockerSwitch;
 
     // Wings
-    if (wingLOn && !prevWingL) wingLState = !wingLState;
-    if (wingROn && !prevWingR) wingRState = !wingRState;
-
-    prevWingL = wingLOn;
-    prevWingR = wingROn;
-
-    //wingL.set_value(wingLState);
-    //wingR.set_value(wingRState);
-
     wingL.set_value(wingLOn);
     wingR.set_value(wingROn);
 
-    // Blocker
-    blocker.set_value(blockerState);
+    wingBL.set_value(wingBLOn);
+    wingBR.set_value(wingBROn);
+
+    // Hang
+    hangUp.set_value(blockerState);
 
     // Endgame
     if (endgameButtonA && endgameButtonB) {
@@ -132,11 +130,6 @@ inline void overUnder() {
         //cataDisable = false;
         //resetPos = 19500;
     }
-
-    if (endgameButtonC) {
-        blockerState = false;
-        passiveEndgame.set_value(true);
-    }
-
-    if (sideHangRelease) passiveEndgame.set_value(false);
+    pros::lcd::print(6, "left: %d", left);
+    pros::lcd::print(7, "right: %d", right);
 }

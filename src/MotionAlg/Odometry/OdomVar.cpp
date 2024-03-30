@@ -65,14 +65,14 @@ inline pros::Rotation SlEncode(21);
 inline pros::Rotation SsEncode(17, true);
 
 // Inertial Sensor
-inline pros::Imu imu1(1);
-inline pros::Imu imu2(11);
+inline pros::Imu imu1(11);
+inline pros::Imu imu2(1);
 
 // Distance Sensor
 inline pros::Distance pipeCheck(3);
 
 // imu error compensations
-inline double imu1Multi = 1;
+inline double imu1Multi = 1.0027;
 inline double imu2Multi = 1;
 
 inline double imu1Increase = 0;
