@@ -55,7 +55,7 @@ inline void odometry () {
             deltX = deltS;
             deltY = deltL;
         } else { // angle change
-            deltX = (2 * sin(deltTheta / 2)) * (deltS / deltTheta + Ss);
+            deltX = (2 * sin(deltTheta / 2)) * (deltS / deltTheta - Ss);
 			deltY = (2 * sin(deltTheta / 2)) * (deltL / deltTheta - Sl);
         }
 

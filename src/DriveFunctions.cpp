@@ -4,14 +4,14 @@ inline void moveL(int velocity) {
 	LF.move_velocity(velocity);
 	LB.move_velocity(velocity);
 	LM.move_velocity(velocity);
-	noel.move_velocity(velocity);
+	noel.move_velocity(velocity / 3);
 }
 
 inline void moveR(int velocity) {
 	RF.move_velocity(velocity);
 	RB.move_velocity(velocity);
 	RM.move_velocity(velocity);
-	tofu.move_velocity(velocity);
+	tofu.move_velocity(velocity / 3);
 }
 
 inline void movePL(int power) {

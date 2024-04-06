@@ -1,4 +1,4 @@
-#include "Autons.cpp"
+#include "WorldsAutons.cpp"
 #include "pros/misc.h"
 
 void initialize() {
@@ -11,6 +11,7 @@ void initialize() {
 	wingR.set_value(false);
 	wingBL.set_value(false);
 	wingBR.set_value(false);
+	odomRelease.set_value(false);
 
 	// calibrate imu
 	imu1.reset();
@@ -27,46 +28,46 @@ void initialize() {
 	pros::delay(1000);
 
 	// auton select
-
+	variation = 
 	autonNum = autonSelect.get_angle();
 	double size = 40; // angle in degrees per auton option
 
 	pros::lcd::print(0, "auton: %d", autonNum);
 
 	if (autonNum < size * 1) {
-		autonNum = 1;
-		pros::lcd::print(1, "net rush");
+		autonNum = 0;
+		pros::lcd::print(1, "net qual");
 	}
 	else if (autonNum < size * 2) {
-		autonNum = 2;
-		pros::lcd::print(1, "matchload rush");
+		autonNum = 1;
+		pros::lcd::print(1, "matchload qual");
 	}
 	else if (autonNum < size * 3) {
-		autonNum = 3;
-		pros::lcd::print(1, "net avoid");
+		autonNum = 2;
+		pros::lcd::print(1, "net elim");
 	}
 	else if (autonNum < size * 4) {
-		autonNum = 4;
-		pros::lcd::print(1, "matchload avoid");
+		autonNum = 3;
+		pros::lcd::print(1, "matchload elim");
 	}
 	else if (autonNum < size * 5) {
-		autonNum = 5;
+		autonNum = 4;
 		pros::lcd::print(1, "matchload elim");
 	}
 	else if (autonNum < size * 6) {
-		autonNum = 6;
+		autonNum = 5;
 		pros::lcd::print(1, "skills");
 	}
 	else if (autonNum < size * 7) {
-		autonNum = 7;
+		autonNum = 6;
 		pros::lcd::print(1, "test");
 	}
 	else if (autonNum < size * 8) {
-		autonNum = 8;
+		autonNum = 7;
 		pros::lcd::print(1, "net elim");
 	}
 	else {
-		autonNum = 0;
+		autonNum = -1;
 		pros::lcd::print(1, "disabled");
 	}
 
@@ -80,44 +81,34 @@ void competition_initialize() {}
 
 void autonomous() {
 	switch (autonNum) {
+		case 0:
+			autoStart();
+			netQual(variation);
+			break;
 		case 1:
 			autoStart();
-			netSideRush();
+			matchloadQual(variation);
 			break;
 		case 2:
 			autoStart();
-			matchloadRush();
+			netElim(variation);
 			break;
 		case 3:	
-			globalX = -32;
-			globalY = -8;
-			thetaReset = 3 * pi / 2;
 			autoStart();
-			netSideFull();
+			matchloadElim(variation);
 			break;
 		case 4:
 			autoStart();
-			matchloadAvoid();
 			break;
 		case 5:
 			autoStart();
-			matchloadRushElim();
 			break;
 		case 6:
-			thetaReset = 3 * pi / 2;
 			autoStart();
-			skills();
 			break;
 		case 7:
 			autoStart();
 			test();
-			break;
-		case 8:
-			globalX = -32;
-			globalY = -8;
-			thetaReset = 3 * pi / 2;
-			autoStart();
-			netSideElim();
 			break;
 		default: 
 			auton = false;
@@ -132,8 +123,7 @@ void opcontrol() {
 	if (autonNum == 6) {
 		thetaReset = 3 * pi / 2;
 		autoStart();
-		driverSkills();
-		//skills();
+		//driverSkills();
 	}
 
 	// Variables

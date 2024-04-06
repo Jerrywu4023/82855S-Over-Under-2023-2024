@@ -130,6 +130,4 @@ inline void overUnder() {
         //cataDisable = false;
         //resetPos = 19500;
     }
-    pros::lcd::print(6, "left: %d", left);
-    pros::lcd::print(7, "right: %d", right);
 }
