@@ -130,6 +130,8 @@ void opcontrol() {
 	int driveMode = 0;
 	auton = false;
 	
+	odomRelease.set_value(true);
+
 	// Control Loop
 	while (driveMode != -1) {
 		overUnder();

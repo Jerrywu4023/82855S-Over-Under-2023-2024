@@ -20,7 +20,7 @@ inline double Xdiff, Ydiff;
 inline double distance, angle;
 
 inline double turnMulti = 2.7;
-inline double driveMulti = 2.5;
+inline double driveMulti = 2.4;
 inline double pivotPower = 2.3;
 
 inline double turnRestrict;
