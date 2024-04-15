@@ -14,7 +14,146 @@ inline void autoStart() {
 /**
  * @brief Net side qualifications ################################################################
  */
-inline void netQual(bool variation) {}
+inline void netQual(bool variation) {
+    turnMulti = 2.5;
+
+    // score preload (p)
+    intakeA.move(-127);// unhook
+
+    desX = 0;
+    desY = 55;
+    pros::delay(300);
+    intakeA.move(127);
+    pros::delay(700);
+
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(600);
+
+    moveTurn = true;
+    intakeA.move(-127);
+
+    desX = 40;
+    desY = 50;
+    pros::delay(600);
+
+    desX = -10;
+    desY = 50;
+    pros::delay(300);
+
+    // intake centre middle (1)
+    moveTurn = false;
+
+    desOrientation = 330;
+    pros::delay(700);
+
+    moveTurn = true;
+    intakeA.move(127);
+
+    desX = -35;
+    desY = 58;
+    pros::delay(800);
+
+    // return to start and release (1)
+    turnMulti = 2.9;
+    desX = 10;
+    desY = -10;
+    pros::delay(1300);
+
+    moveTurn = false;
+    intakeA.move(-127);
+    turnMulti = 2.5;
+
+    desOrientation = 60;
+    pros::delay(800);
+    
+    // move to matchloader
+    desOrientation = 220;
+    pros::delay(600);
+
+    moveTurn = true;
+    intakeA.move(0);
+
+    desX = 30;
+    desY = 8;
+    pros::delay(800);
+
+    // take out matchload (2)
+    moveTurn = false;
+
+    desOrientation = 230;
+    pros::delay(300);
+    wingBL.set_value(true);
+
+    desOrientation = 160;
+    pros::delay(500);
+    
+    wingBL.set_value(false);
+    desOrientation = 210;
+    pros::delay(500);
+
+    moveTurn = true;
+
+    // score (1) (2)
+    desX = 30;
+    desY = 60;
+    pros::delay(700);
+
+    desX = -10;
+    desY = -5;
+    pros::delay(700);
+
+    // turn to intake side middle (3)
+    moveTurn = false;
+
+    desOrientation = 310;
+    pros::delay(600);
+
+    moveTurn = true;
+    intakeA.move(127);
+
+    desX = -30;
+    desY = 31;
+    pros::delay(1000);
+    
+    desX = -25;
+    desY = 60;
+    pros::delay(900);
+
+    // score (3) (4)
+    moveTurn = false;
+
+    desOrientation = 90;
+    pros::delay(700);
+
+    moveTurn = true;
+    wingL.set_value(true);
+
+    desX = 30;
+    desY = 55;
+    pros::delay(200);
+    intakeA.move(-127);
+    pros::delay(700);
+    wingL.set_value(false);
+
+    // ending position
+    if (true/*!variation*/) {
+        desX = -10;
+        desY = 55;
+        pros::delay(800);
+        auton = false;
+    } /*else {
+        desX = -30;
+        desY = 10;
+        pros::delay(500);
+
+        desX = -30;
+        desY = -50;
+        pros::delay(500);
+        auton = false;
+    }*/
+}
 
 
 /**
@@ -22,7 +161,7 @@ inline void netQual(bool variation) {}
  */
 inline void matchloadQual(bool variation) {
     // rush centre bottom triball
-    if (!variation) {
+    if (variation) {
         turnMulti = 3.8;
 
         // push (p) to goal with wing
@@ -41,14 +180,16 @@ inline void matchloadQual(bool variation) {
         turnMulti = 2.7;
 
         desX = -6;
-        desY = -13;
+        desY = -12;
         pros::delay(1500);
     } else {
         turnMulti = 2.7;
+        intakeA.move(-127);
 
         desX = -8;
-        desY = -13;
+        desY = -14;
         pros::delay(1500);
+        intakeA.move(0);
     }
 
     // return to matchloader
@@ -71,7 +212,7 @@ inline void matchloadQual(bool variation) {
     wingBL.set_value(true);
     pros::delay(100);
 
-    desOrientation = 220;
+    desOrientation = 240;
     pros::delay(1000);
     wingBL.set_value(false);
 
@@ -130,7 +271,7 @@ inline void netElim(bool variation) {
     // curve to spin out triball
     desX = -5;
     desY = -10;
-    pros::delay(500);
+    pros::delay(300);
 
     // release (1)
     intakeA.move(-127);
@@ -215,13 +356,13 @@ inline void netElim(bool variation) {
     // drive in front of centre top (5)
     desX = -25;
     desY = 60;
-    pros::delay(1000);
+    pros::delay(900);
 
     // score (4) (5)
     moveTurn = false;
 
     desOrientation = 90;
-    pros::delay(800);
+    pros::delay(600);
 
     moveTurn = true;
     wingL.set_value(true);
@@ -230,10 +371,10 @@ inline void netElim(bool variation) {
     desY = 55;
     pros::delay(200);
     intakeA.move(-127);
-    pros::delay(800);
+    pros::delay(700);
     wingL.set_value(false);
 
-    desX = 0;
+    desX = -20;
     desY = 55;
     pros::delay(500);
     auton = false;

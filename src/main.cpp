@@ -28,7 +28,15 @@ void initialize() {
 	pros::delay(1000);
 
 	// auton select
-	variation = 
+	if (pipeCheck.get() < 30) {
+		variation = true;
+		pros::lcd::print(2, "variation");
+	}
+	else {
+		variation = false;
+		pros::lcd::print(2, "normal");
+	}
+
 	autonNum = autonSelect.get_angle();
 	double size = 40; // angle in degrees per auton option
 
@@ -117,7 +125,7 @@ void autonomous() {
 }
 
 void opcontrol() {
-	pros::lcd::print(0,"b");
+	pros::lcd::print(0,"a");
 	pros::Task Odom(odometry);
 
 	if (autonNum == 6) {
