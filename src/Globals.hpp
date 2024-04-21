@@ -28,11 +28,11 @@ inline pros::Motor intakeA(15, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_EN
 // Pneumatics ###
 // Front Wings
 inline pros::ADIDigitalOut wingL('F');
-inline pros::ADIDigitalOut wingR('E');
+inline pros::ADIDigitalOut wingR('H');
 
 // Back Wings
-inline pros::ADIDigitalOut wingBL('H');
-inline pros::ADIDigitalOut wingBR('G');
+inline pros::ADIDigitalOut wingBL('G');
+inline pros::ADIDigitalOut wingBR('E');
 
 // Hang
 inline pros::ADIDigitalOut hangUp('C');

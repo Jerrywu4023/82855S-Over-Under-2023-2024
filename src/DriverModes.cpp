@@ -27,12 +27,14 @@ inline int right;
 
 inline bool wingROn, wingLOn, wingBLOn, wingBROn;
 
+inline bool passiveState = false;
+inline bool passive = false, prevPassive = false;
+
 inline bool blockerSwitch = false;
 inline bool prevBlocker = false;
 inline bool blockerState = false;
 
 inline int resetPos = 21000;
-
 
 /**
  * @brief over under match load styled
@@ -42,8 +44,8 @@ inline int resetPos = 21000;
 inline void overUnder() {
     // Get controller
     // joysticks
-    drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1.2;
+    drivePower = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) * 1;
+    turnPower = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) * -1.3;
 
     // buttons
     intakeButton = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
@@ -63,6 +65,8 @@ inline void overUnder() {
 
     endgameButtonA = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     endgameButtonB = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+
+    passive = master.get_digital(pros::E_CONTROLLER_DIGITAL_X);
 
     // Drive - move drive motors
     left = drivePower - turnPower;
@@ -113,11 +117,17 @@ inline void overUnder() {
     prevBlocker = blockerSwitch;
 
     // Wings
+    if (passive == true && prevPassive == false) passiveState = !passiveState;
+
+    if (wingROn || passiveState) wingR.set_value(true);
+    else wingR.set_value(false);
     wingL.set_value(wingLOn);
-    wingR.set_value(wingROn);
 
     wingBL.set_value(wingBLOn);
     wingBR.set_value(wingBROn);
+
+
+    prevPassive = passive;
 
     // Hang
     hangUp.set_value(blockerState);
