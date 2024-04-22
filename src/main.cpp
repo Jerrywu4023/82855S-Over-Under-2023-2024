@@ -110,6 +110,7 @@ void autonomous() {
 			break;
 		case 5:
 			autoStart();
+			skills(variation);
 			break;
 		case 6:
 			autoStart();

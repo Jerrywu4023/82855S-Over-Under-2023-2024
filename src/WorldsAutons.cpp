@@ -492,6 +492,142 @@ inline void matchloadElim(bool variation) {
     moveR(0);
 }
 
+/**
+ * @brief Skills #################################################################
+ */
+inline void skills(bool variation) {
+
+    for (int run = 0; run < 2; run++) {
+        intakeA.move(-127);
+        moveTurn = false;
+
+        desOrientation = 90;
+        pros::delay(600);
+
+        moveTurn = true;
+
+        desX = -20;
+        desY = 1;
+        pros::delay(800);
+
+        moveTurn = false;
+
+        desOrientation = 115;
+        pros::delay(600);
+
+        wingBR.set_value(true);
+        pros::delay(14000);
+
+        moveTurn = true;
+        wingBR.set_value(false);
+        wingL.set_value(true);
+
+        desX = 10;
+        desY = -12;
+        pros::delay(500);
+
+        for (int i = 0; i < 3; i++) {
+            desX += 26;
+            pros::delay(500);
+        }
+        pros::delay(500);
+
+        moveTurn = false;
+
+        desOrientation = 70;
+        pros::delay(700);
+
+        moveTurn = true;
+
+        desX = 125;
+        desY = 60;
+        pros::delay(1200);
+
+        wingL.set_value(false);
+        desX = 100;
+        desY = -5;
+        pros::delay(300);
+
+        moveTurn = false;
+
+        desOrientation = 40;
+        pros::delay(500);
+
+        moveTurn = true;
+
+        desX = 125;
+        desY = 60;
+        pros::delay(900);
+
+        desX = 100;
+        desY = -5;
+        pros::delay(700);
+
+        moveTurn = false;
+
+        desOrientation = 230;
+        pros::delay(700);
+
+        moveTurn = true;
+
+        desX = 125;
+        desY = 60;
+        pros::delay(1200);
+        intakeA.move(0);
+
+        if (run == 0) {
+            desX = 85;
+            desY = -7;
+            pros::delay(800);
+
+            moveTurn = false;
+
+            desOrientation = 90;
+            pros::delay(700);
+
+            moveTurn = true;
+
+            for (int i = 0; i < 3; i++) {
+                desX -= 33;
+                desY = -3;
+                pros::delay(500);
+            }
+            pros::delay(500);
+        } else {
+            desX = 85;
+            desY = -13;
+            pros::delay(800);
+
+            moveTurn = false;
+            hangUp.set_value(true);
+
+            desOrientation = 255;
+            pros::delay(700);
+
+            moveTurn = true;
+
+            desX = 30;
+            pros::delay(500);
+
+            moveTurn = false;
+
+            desOrientation = 270;
+            pros::delay(700);
+
+            moveTurn = true;
+
+            desX = -20;
+            pros::delay(2000);
+
+            auton = false;
+            hang.set_value(true);
+            hangUp.set_value(false);
+            odomRelease.set_value(true);
+            movePL(0);
+            movePR(0);
+        }
+    }
+}
 
 /**
  * @brief Tester code #################################################################
