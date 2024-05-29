@@ -39,7 +39,7 @@ inline void netQual(bool variation) {
     desY = 50;
     pros::delay(600);
 
-    desX = -35;
+    desX = -30;
     desY = 50;
     pros::delay(800);
 
@@ -76,8 +76,8 @@ inline void netQual(bool variation) {
     moveTurn = true;
     intakeA.move(0);
 
-    desX = 30;
-    desY = 10.5;
+    desX = 33;
+    desY = 9;
     pros::delay(800);
 
     // take out matchload (2)
@@ -125,12 +125,12 @@ inline void netQual(bool variation) {
 
     // score (3) (4)
     moveTurn = false;
+    wingL.set_value(true);
 
     desOrientation = 83;
     pros::delay(800);
 
     moveTurn = true;
-    wingL.set_value(true);
 
     desX = 30;
     desY = 58;
@@ -197,8 +197,8 @@ inline void matchloadQual(bool variation) {
         turnMulti = 2.7;
         intakeA.move(-127);
 
-        desX = -8;
-        desY = -14;
+        desX = -9;
+        desY = -15;
         pros::delay(1500);
         intakeA.move(0);
     }
@@ -211,7 +211,7 @@ inline void matchloadQual(bool variation) {
 
     moveTurn = true;
 
-    desX = globalX - 18;
+    desX = globalX - 19;
     desY = globalY + 10;
     pros::delay(800);
 
@@ -236,7 +236,7 @@ inline void matchloadQual(bool variation) {
     wingL.set_value(true);
 
     intakeA.move(-127);
-    desY = -5;
+    desY = -7;
     desX = 25;
     pros::delay(1500);
     wingL.set_value(false);
@@ -276,11 +276,11 @@ inline void netElim(bool variation) {
 
     // return to starting position
     desX = 13;
-    desY = -10;
+    desY = -13;
     pros::delay(800);
 
     // curve to spin out triball
-    desX = -5;
+    desX = -2;
     desY = -10;
     pros::delay(300);
 
@@ -292,19 +292,19 @@ inline void netElim(bool variation) {
 
     // move to elevation (2)
     turnMulti = 2.5;
-    desOrientation = 272;
+    desOrientation = 265;
     pros::delay(700);
 
     intakeA.move(127);
 
     moveTurn = true;
-    desX = -32;
+    desX = -29;
     desY = -7;
     pros::delay(1100);
 
     // return to matchload bar (3)
-    desX = 26.5;
-    desY = 12;
+    desX = 28;
+    desY = 12.5;
     pros::delay(1250);
 
     moveTurn = false;
@@ -371,12 +371,12 @@ inline void netElim(bool variation) {
 
     // score (4) (5)
     moveTurn = false;
+    wingL.set_value(true);
 
     desOrientation = 83;
     pros::delay(600);
 
     moveTurn = true;
-    wingL.set_value(true);
 
     desX = 30;
     desY = 55;
@@ -385,10 +385,15 @@ inline void netElim(bool variation) {
     pros::delay(700);
     wingL.set_value(false);
 
-    desX = -20;
-    desY = 55;
-    pros::delay(500);
     auton = false;
+    movePL(0);
+    movePR(0);
+    pros::delay(300);
+    movePL(-127);
+    movePR(-127);
+    pros::delay(400);
+    movePL(0);
+    movePR(0);
 }
 
 
@@ -448,7 +453,7 @@ inline void matchloadElim(bool variation) {
 
     moveTurn = true;
 
-    desX = globalX - 18;
+    desX = globalX - 19;
     desY = globalY + 10;
     pros::delay(800);
 
