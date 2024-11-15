@@ -1,4 +1,4 @@
-#include "globals.hpp"
+#include "Globals.hpp"
 
 inline void moveL(int velocity) {
 	LF.move_velocity(velocity);
